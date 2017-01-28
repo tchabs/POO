@@ -36,6 +36,10 @@ public class Empresa implements Serializable{
         return this.viaturas;
                    
     }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setMotoristas(CatUtilizadores m) {
         this.motoristas = m.clone();
@@ -70,5 +74,12 @@ public class Empresa implements Serializable{
         return e.getViaturas().equals(viaturas) && 
                e.getMotoristas().equals(motoristas) && 
                e.getId()==this.id;
+    }
+    
+    public String toString (){
+      StringBuilder sb = new StringBuilder ();
+      sb.append("Id:").append(id).append("\n");
+      
+      return sb.toString();
     }
 }

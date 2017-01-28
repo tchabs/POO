@@ -87,7 +87,16 @@ public class UMER implements Serializable
     public void sigOut() {
         this.uConectado = null;
     }
-
+    
+    public void insertEmpresa(Empresa e) {
+        if(this.catE==null) catE = new ArrayList<Empresa>();
+        this.catE.add(e);
+    }
+    
+    public boolean existEmpresa(long id) {
+        return this.catE.stream().anyMatch(x -> x.getId()==id);
+    }
+    
     public void addViatura(Viatura v) throws PermissionException,ViaturaException{
         if(uConectado.checkTipoU()!=2) throw new PermissionException();
         if(catV.contem(v)) throw new ViaturaException();
@@ -109,24 +118,28 @@ public class UMER implements Serializable
         e.insertMotoristaE(m);
     }
 
-    public void callACab(Localizacao fim,String matricula,Empresa empresa) throws ViaturaException{
+    public void callACab(Localizacao cliente,Localizacao fim,String matricula,Empresa empresa) throws ViaturaException{
 
         Viagem viagem = new Viagem();
         Viatura v = null;
-        viagem.setInicioL(uConectado.getLocal());
+        viagem.setInicioL(cliente);
         viagem.setFimL(fim);
         viagem.setInicioT(new GregorianCalendar());
-
+        double dist = cliente.distCalc(fim);
+        
         if(matricula=="near by") v = getNearByE(viagem.getInicioL(),empresa);
         else if (empresa==null) v = catV.findV(matricula);
         else v = empresa.getViaturas().findV(matricula);
-
+        
+        double preco = v.getCusto()*dist;
+        viagem.setPreco(preco);
         v.insertViagem(viagem);
         uConectado.insertViagem(viagem);
         v.getMotorista().insertViagem(viagem);
+        v.setLocal(fim);
     }
 
-	public Viatura getNearByE(Localizacao local,Empresa empresa) throws ViaturaException{
+    public Viatura getNearByE(Localizacao local,Empresa empresa) throws ViaturaException{
 
         if (empresa==null) return catV.getNearBy(local,"any");
         return empresa.getViaturas().getNearBy(local,"any");

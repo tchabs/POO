@@ -23,9 +23,6 @@ public class UMERApp{
 
     private UMERApp() {}
 
-    /**
-     * Função que faz executar toda a aplicação ImoobliáriaApp.
-     */
     public static void main(String[] args) throws EmailException, PermissionException, ViaturaException, ParseException{
         String file_name = "snap.data";
         carregarMenus();
@@ -44,9 +41,6 @@ public class UMERApp{
         System.out.println("Volte sempre!");
     }
 
-    /**
-     * Apresenta o menu principal.
-     */
     private static void apresentarMenu () throws EmailException, PermissionException, ViaturaException, ParseException{
         int running = 1;
 
@@ -56,9 +50,18 @@ public class UMERApp{
                     case 1: registarUtilizador();
                             break;
                     case 2: iniciarSessao();
+                            menu();
                             break;
-                    case 3: menu();
+                    case 3: listaEmpresas();
+                            menu();
                             break;
+                    case 4: top10Clientes();
+                            menu();
+                            break;
+                    case 5: top5Motoristas();
+                            menu();
+                            break;
+                            
                     case 0: running = 0;
                 }
 
@@ -66,9 +69,7 @@ public class UMERApp{
 
     }
 
-    /**
-     * Apresenta o Menu consoante o tipo de utilizador com sessão iniciada.
-     */
+    
     private static void menu() throws EmailException, PermissionException, ViaturaException, ParseException{
 
       if(um.getUtilizadorC() == null)
@@ -85,9 +86,6 @@ public class UMERApp{
         }
     }
 
-    /**
-     * Carrega todos os menus para apresentar.
-     */
     private static void carregarMenus() {
         String[] principal = { "Registar Utilizador",
                                "Iniciar Sessao",
@@ -102,7 +100,6 @@ public class UMERApp{
                               "Associar Veiculo",
                               "Associar Empresa",
                               "Consultar Historico",
-                              "Registar Viagem",
                               "Sinalizar Disponibilidade",
                                "Terminar Sessão"};
 
@@ -138,10 +135,7 @@ public class UMERApp{
         menu_veiculo = new Menu(veiculo);
     }
 
-    /**
-     * Carrega o estado da aplicação da última vez que esta foi fechada.
-     * @param fich
-     */
+
     private static void initApp(){
         try {
             um = UMER.init();
@@ -160,9 +154,7 @@ public class UMERApp{
         }
     }
 
-    /**
-     * Registo na UMERApp
-     */
+
     private static void registarUtilizador() throws EmailException{
         String email, nome, password, morada, dataNascimento;
         Utilizador user = null;;
@@ -180,7 +172,11 @@ public class UMERApp{
             morada = is.nextLine();
             System.out.print("Data de nascimento: ");
             dataNascimento = is.nextLine();
-
+            System.out.print("A sua localização atual em X: \n");
+            int x = is.nextInt();
+            System.out.print("A sua localização atual em Y: \n");
+            int y = is.nextInt();
+            Localizacao l = new Localizacao(x,y);
             switch(menu_registo.getOpcao()){
                 case 0: fecharSessao();
                 case 1: user = new Motorista(email,nome,password,morada,dataNascimento, 0, 0, 0, false);
@@ -188,14 +184,13 @@ public class UMERApp{
                 case 2: user = new Cliente(email,nome,password,morada,dataNascimento);
                         break;
             }
+            user.setLocal(l);
             um.signUp(user);
 
             is.close();
         }
 
-        /**
-     * Inicio de sessão na UMERApp.
-     */
+
     private static void iniciarSessao(){
         Scanner is = new Scanner(System.in);
         String email,password;
@@ -216,9 +211,7 @@ public class UMERApp{
         is.close();
     }
 
-    /**
-     * Fechar sessão na ImobiliariaApp.
-     */
+
     private static void fecharSessao(){
         um.sigOut();
     }
@@ -254,8 +247,9 @@ public class UMERApp{
                 case 3: running_menu_solicitar();
                         break;
                 case 4: fecharSessao();
+                        
             }
-        }while(menu_cliente.getOpcao() != 0);
+        }while(menu_cliente.getOpcao() != 4);
     }
 
     private static void running_menu_veiculo() throws ViaturaException{
@@ -273,7 +267,7 @@ public class UMERApp{
         }while(menu_cliente.getOpcao() != 0);
     }
 
-    private static void running_menu_motorista() throws ViaturaException, ParseException{
+    private static void running_menu_motorista() throws ViaturaException, ParseException,PermissionException{
         do{
             menu_motorista.executa();
 
@@ -290,10 +284,10 @@ public class UMERApp{
                         break;
                 case 6: fecharSessao();
             }
-        }while(menu_motorista.getOpcao() != 0);
+        }while(menu_motorista.getOpcao() != 6);
     }
 
-    private static void running_menu_motoristaEmp() throws ViaturaException, ParseException{
+    private static void running_menu_motoristaEmp() throws ViaturaException, ParseException,PermissionException{
         do{
             menu_motoristaEmp.executa();
 
@@ -314,7 +308,7 @@ public class UMERApp{
                         break;
                 case 8: fecharSessao();
             }
-        }while(menu_motoristaEmp.getOpcao() != 0);
+        }while(menu_motoristaEmp.getOpcao() != 8);
     }
 
     private static void running_menu_solicitar() throws ViaturaException{
@@ -338,7 +332,7 @@ public class UMERApp{
          sb.append(i+1).append(top.get(i).getNome()).append("\n");
         }
 
-
+        System.out.println(sb);
     }
 
    private static void top5Motoristas(){
@@ -347,7 +341,9 @@ public class UMERApp{
        int i;
        for(i=0; i<5; i++  ){
          sb.append(i+1).append(top.get(i).getNome()).append("\n");
+         
         }
+        System.out.println(sb);
     }
 
   private static void sinalizaDisp(){
@@ -404,8 +400,6 @@ public class UMERApp{
       y = is.nextInt();
       Localizacao l = new Localizacao(x, y);
 
-      user.setLocal(l);
-
       System.out.print("A localização em X para onde quer ir: \n");
       w = is.nextInt();
       System.out.print("A localização em Y para onde quer ir: \n");
@@ -413,7 +407,7 @@ public class UMERApp{
       Localizacao f = new Localizacao(w, z);
       Empresa e = null;
       String s = "near by";
-      um.callACab(f, s, e);
+      um.callACab(l, f, s, e);
   }
 
     private static void avaliaMotorista() throws EmailException, PermissionException{
@@ -432,19 +426,41 @@ public class UMERApp{
         }
     }
 
-   private static void adicionaVeiculo(){
+   private static void adicionaVeiculo() throws PermissionException,ViaturaException{
        Scanner scan = new Scanner(System.in);
+       
        System.out.println("Digite a matricula da viatura:");
        String matricula= scan.nextLine();
+       
        System.out.println("Velocidade média da viatura:");
        double velMedia= scan.nextDouble();
+       
        System.out.println("Custo:");
        double custo= scan.nextDouble();
+       
        System.out.println("Fiablidade:");
        double fiablidade = scan.nextDouble();
-
-       Viatura v = new Viatura(matricula, velMedia, custo, fiablidade);
-       um.getCatV().insertViatura(v);
+       
+       System.out.print("A localização em X da viatura: \n");
+       int x = scan.nextInt();
+       System.out.print("A localização em Y da viatura: \n");
+       int y = scan.nextInt();
+       Localizacao l = new Localizacao(x,y);
+       
+       System.out.println("Tipo de viatura:\n1-Carro\n2-Moto\n3-Carrinha");
+       int tipo= scan.nextInt();
+       
+       
+       Viatura v = null;
+       switch(tipo){
+           case 1: v = (Carro) new Carro(matricula, velMedia, custo, fiablidade);
+           case 2: v = new Moto(matricula, velMedia, custo, fiablidade);
+           case 3: v = new Carrinha(matricula, velMedia, custo, fiablidade);
+       }
+       v.setLocal(l);
+       Motorista m = (Motorista) um.getUtilizadorC();
+       v.setMotorista(m);
+       um.addViatura(v);
     }
 
   private static void associaVeiculo() throws ViaturaException{
@@ -460,11 +476,16 @@ public class UMERApp{
    private static void listaEmpresas(){
       List<Empresa> emp = new ArrayList<Empresa>();
       emp = um.getCatE();
+      if (emp==null || emp.isEmpty()) return;
       StringBuilder sb = new StringBuilder();
       int i;
       for(i=0;i<emp.size();i++){
-          sb.append("Empresa: ").append(emp.get(i).toString()).append("\n").append("\n");
+          Empresa e = emp.get(i).clone();
+          sb.append("Empresa: ").append(e.toString()).append("\n").append("\n");
+          
+          
         }
+        System.out.println(sb);
   }
 
   private static void solicitaCarrinha() throws ViaturaException{
@@ -565,9 +586,14 @@ public class UMERApp{
       Scanner scan = new Scanner(System.in);
       System.out.println("Digite o id da empresa:");
       long id = scan.nextLong();
+      if(um.getCatE()==null||um.existEmpresa(id)==false) {
+          Empresa e = new Empresa();
+          e.setId(id);
+          um.insertEmpresa(e);
+        }
       for(Empresa p : um.getCatE())
       if(id == p.getId()) {
-        p.insertMotoristaE((MotoristaE)um.getUtilizadorC());
+        p.insertMotoristaE((Motorista)um.getUtilizadorC());
        }
     }
 

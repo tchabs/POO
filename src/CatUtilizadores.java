@@ -77,7 +77,7 @@ public class CatUtilizadores implements Serializable
         }
         
         Collections.sort(motorista, new ComparadorTop10());
-        List<Motorista> nova = new ArrayList<Motorista>(motorista.subList(0,4));
+        List<Motorista> nova = new ArrayList<Motorista>(motorista.subList(0,5));
         return nova;
     }
     
@@ -96,7 +96,7 @@ public class CatUtilizadores implements Serializable
         }
         
         Collections.sort(clientes, new ComparadorTop10());
-        List<Cliente> nova = new ArrayList<>(clientes.subList(0,9));
+        List<Cliente> nova = new ArrayList<>(clientes.subList(0,10));
         return nova;
     }
     

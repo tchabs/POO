@@ -1,6 +1,6 @@
 import java.util.TreeSet;
 import java.util.List;
-import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.Comparator;
 import java.io.Serializable;
 import java.util.Collection;
@@ -45,33 +45,96 @@ public class CatViaturas implements Serializable
     }
     
     public Viatura findV(String matricula) throws ViaturaException {
-        
-         List<Viatura> s = this.catalog
+        List<Viatura> s =null;
+         s = this.catalog
             .stream()
             .filter(x -> x.getMatricula().equals(matricula))
             .collect(Collectors.toList());
             
+         if(s.equals(null)) throw new ViaturaException("Viatura nao registada no sistema");
          if(s.isEmpty()) throw new ViaturaException("Viatura nao registada no sistema");
          else return s.stream().findFirst().get();
             
     }
     
-    public Viatura getNearBy(Localizacao local) throws ViaturaException{
+    public Viatura getNearBy(Localizacao local,String tipo) throws ViaturaException{
         ComparadorDistancia comp = new ComparadorDistancia();
-        
-        TreeMap<String,Double> catD = (TreeMap<String,Double>) this.catalog
-                                                                    .stream()
-                                                                    .collect(Collectors
-                                                                        .toMap(v->v.getMatricula(),
-                                                                               v->v.getLocal().distCalc(local)));
-        String matricula = catD.entrySet()
+        String matricula=null;
+        HashMap<String,Double> catD = null;
+
+        if(tipo=="any"){
+            
+            catD = (HashMap<String,Double>) this.catalog
+                .stream()
+                .collect(Collectors.toMap(v->v.getMatricula(),v->v.getLocal().distCalc(local)));
+            
+            matricula = catD.entrySet()
                                .stream()
                                .min(comp)
                                .get()
                                .getKey();
+        }
                                
-        return findV(matricula);                       
-                   
+                               
+        else {
+            if(tipo=="carro") {
+                    
+                    catD = (HashMap<String,Double>) this.catalog
+                        .stream()
+                        .filter(x -> x instanceof Carro)
+                        .collect(Collectors
+                            .toMap(v->v.getMatricula(),
+                                   v->v.getLocal().distCalc(local)));
+                    if(catD.isEmpty()) matricula = "Nenhum taxi do tipo escolhido disponivel"          ;     
+                    else{
+                    matricula = catD.entrySet()
+                               .stream()
+                               .min(comp)
+                               .get()
+                               .getKey();
+                            }
+                        }
+
+            if(tipo=="moto") {
+
+                
+                    catD = (HashMap<String,Double>) this.catalog
+                        .stream()
+                        .filter(x -> x instanceof Moto)
+                        .collect(Collectors
+                            .toMap(v->v.getMatricula(),
+                                   v->v.getLocal().distCalc(local)));
+                    if(catD.isEmpty()) matricula = "Nenhum taxi do tipo escolhido disponivel";               
+                    else{
+                    matricula = catD.entrySet()
+                               .stream()
+                               .min(comp)
+                               .get()
+                               .getKey();
+                            }
+                        }
+
+            if(tipo=="carrinha") {
+                    catD = (HashMap<String,Double>) this.catalog
+                        .stream()
+                        .filter(x -> x instanceof Carrinha)
+                        .collect(Collectors
+                            .toMap(v->v.getMatricula(),
+                                   v->v.getLocal().distCalc(local)));
+                                   
+                    if(catD.isEmpty()) matricula = "Nenhum taxi do tipo escolhido disponivel";              
+                    else{
+                    matricula = catD.entrySet()
+                               .stream()
+                               .min(comp)
+                               .get()
+                               .getKey();
+                            }
+                        }
+        }
+
+        return findV(matricula);
+
     }
     
     public double totalFaturado() {
@@ -101,54 +164,5 @@ public class CatViaturas implements Serializable
     public CatViaturas clone(){
         return new CatViaturas(this);
     }
-    public Viatura getNearBy(Localizacao local,String tipo) throws ViaturaException{
-        ComparadorDistancia comp = new ComparadorDistancia();
-        String matricula=null;
-
-        TreeMap<String,Double> catD = (TreeMap<String,Double>) this.catalog
-                                                                    .stream()
-                                                                    .collect(Collectors
-                                                                        .toMap(v->v.getMatricula(),
-                                                                               v->v.getLocal().distCalc(local)));
-
-        if(tipo=="any")matricula = catD.entrySet()
-                               .stream()
-                               .min(comp)
-                               .get()
-                               .getKey();
-        else {
-            if(tipo=="carro") {
-
-                    matricula = catD.entrySet()
-                               .stream()
-                               .filter(x -> x instanceof Carro)
-                               .min(comp)
-                               .get()
-                               .getKey();
-                            }
-
-            if(tipo=="moto") {
-
-                    matricula = catD.entrySet()
-                               .stream()
-                               .filter(x -> x instanceof Moto)
-                               .min(comp)
-                               .get()
-                               .getKey();
-                            }
-
-            if(tipo=="carrinha") {
-
-                    matricula = catD.entrySet()
-                               .stream()
-                               .filter(x -> x instanceof Carrinha)
-                               .min(comp)
-                               .get()
-                               .getKey();
-                            }
-        }
-
-        return findV(matricula);
-
-    }
+    
 }
