@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.params=
-comment0.target=Motos()
+comment0.target=Carro()
 comment1.params=id\ velMedia\ custo\ fiabilidade
-comment1.target=Motos(int,\ double,\ double,\ double)
+comment1.target=Carro(int,\ double,\ double,\ double)
 comment2.params=c
-comment2.target=Motos(Motos)
+comment2.target=Carro(Carro)
 comment3.params=
-comment3.target=Motos\ clone()
+comment3.target=Carro\ clone()
 comment4.params=obj
 comment4.target=boolean\ equals(java.lang.Object)
 numComments=5

@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public abstract class Carro implements Serializable
+public abstract class Viatura implements Serializable
 {
     protected int id;
     protected double velMedia;
@@ -9,25 +9,16 @@ public abstract class Carro implements Serializable
     protected boolean disp;
     protected Localizacao local;
     
-   public Carro(){
+   public Viatura(){
         this.id = 0;
         this.velMedia = 0.0;
         this.custo = 0.0;
         this.fiabilidade = 0.0;
-        this.disp = true;
+        this.disp = false;
         this.local = null;
    }
    
-   public Carro(int id){
-       this.id = id;
-       this.velMedia = 0.0;
-       this.custo = 0.0;
-       this.fiabilidade = 0.0;
-       this.disp = true;
-       this.local = null;
-    }
-   
-   public Carro(int id, double velMedia, double custo, double fiabilidade){
+   public Viatura(int id, double velMedia, double custo, double fiabilidade){
        this.id = id;
        this.velMedia = velMedia;
        this.custo = custo;
@@ -36,13 +27,13 @@ public abstract class Carro implements Serializable
        this.local = null;
     }
     
-   public Carro(Carro c){
+   public Viatura(Viatura c){
        this.id = c.getId();
        this.velMedia = c.getVelMedia();
        this.custo = c.getCusto();
        this.fiabilidade = c.getFiabilidade();
        this.disp = true;
-       this.local = null;
+       this.local = c.getLocal();
    }    
     
    public int getId(){
@@ -91,12 +82,13 @@ public abstract class Carro implements Serializable
        this.local = local;
    }
    
-   public abstract Carro clone();
+   public abstract Viatura clone();
+    
    
     public boolean equals(Object obj){
     if (obj == this) return true;
     if (obj == null || obj.getClass() != this.getClass()) return false;
-    Carro v = (Carro) obj;
+    Viatura v = (Viatura) obj;
     return this.id == v.getId() && this.velMedia == v.getVelMedia()
                                       && this.custo == v.getCusto() 
                                       && this.fiabilidade == v.getFiabilidade()

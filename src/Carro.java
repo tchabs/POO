@@ -1,20 +1,19 @@
-public class Motos extends Carro
+public class Carro extends Viatura
 {   
-    public Motos (){
+    public Carro (){
       super (0,0.0,0.0,0.0);
     }
     
-    public Motos(int id, double velMedia, double custo, double fiabilidade){
+    public Carro(int id, double velMedia, double custo, double fiabilidade){
         super(id,velMedia,custo,fiabilidade);
     }
     
-    
-    public Motos (Motos c){
+    public Carro (Carro c){
       super (c);
     }
     
-    public Motos clone (){
-      return new Motos (this);
+    public Carro clone (){
+      return new Carro (this);
     }
 
     public boolean equals(Object obj){
