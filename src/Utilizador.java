@@ -36,7 +36,7 @@ public abstract class Utilizador implements Serializable
         this.password = a.getPassword();
         this.morada = a.getMorada();
         this.dataNascimento = a.getDataNascimento();
-        this.local = null;
+        this.local = a.getLocal();
     }
     
     public String getEmail() {

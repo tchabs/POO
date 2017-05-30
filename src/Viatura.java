@@ -1,34 +1,28 @@
 import java.io.Serializable;
 
-public abstract class Carro implements Serializable
+public class Viatura implements Serializable
 {
-    protected int id;
-    protected double velMedia;
-    protected double custo;
-    protected double fiabilidade;
-    protected boolean disp;
-    protected Localizacao local;
+    private String matricula;
+    private String tipo;
+    private double velMedia;
+    private double custo;
+    private double fiabilidade;
+    private boolean disp;
+    private Localizacao local;
     
-   public Carro(){
-        this.id = 0;
+   public Viatura(){
+        this.matricula = "null";
+        this.tipo = "null";
         this.velMedia = 0.0;
         this.custo = 0.0;
         this.fiabilidade = 0.0;
-        this.disp = true;
+        this.disp = false;
         this.local = null;
    }
    
-   public Carro(int id){
-       this.id = id;
-       this.velMedia = 0.0;
-       this.custo = 0.0;
-       this.fiabilidade = 0.0;
-       this.disp = true;
-       this.local = null;
-    }
-   
-   public Carro(int id, double velMedia, double custo, double fiabilidade){
-       this.id = id;
+   public Viatura(String matricula,String tipo, double velMedia, double custo, double fiabilidade){
+       this.matricula = matricula;
+       this.matricula = "tipo";
        this.velMedia = velMedia;
        this.custo = custo;
        this.fiabilidade = fiabilidade;
@@ -36,17 +30,22 @@ public abstract class Carro implements Serializable
        this.local = null;
     }
     
-   public Carro(Carro c){
-       this.id = c.getId();
+   public Viatura(Viatura c){
+       this.matricula = c.getMatricula();
+       this.tipo = c.getTipo();
        this.velMedia = c.getVelMedia();
        this.custo = c.getCusto();
        this.fiabilidade = c.getFiabilidade();
        this.disp = true;
-       this.local = null;
+       this.local = c.getLocal();
    }    
     
-   public int getId(){
-       return this.id;
+   public String getMatricula(){
+       return this.matricula;
+    }
+     
+   public String getTipo(){
+       return this.tipo;
     }
     
    public double getVelMedia(){
@@ -71,9 +70,13 @@ public abstract class Carro implements Serializable
        return this.local;
    }
    
-   public void setId(int id){
-       this.id = id;
+   public void setMatricula(String matricula){
+       this.matricula=matricula;
     }
+   
+   public void setTipo(String tipo){
+       this.tipo=tipo;
+    } 
     
    public void setVelMedia(double velMedia){
        this.velMedia = velMedia;
@@ -91,13 +94,18 @@ public abstract class Carro implements Serializable
        this.local = local;
    }
    
-   public abstract Carro clone();
+   public Viatura clone() {
+       return new Viatura(this);
+    }
+    
    
     public boolean equals(Object obj){
     if (obj == this) return true;
     if (obj == null || obj.getClass() != this.getClass()) return false;
-    Carro v = (Carro) obj;
-    return this.id == v.getId() && this.velMedia == v.getVelMedia()
+    Viatura v = (Viatura) obj;
+    return v.getMatricula().equals(matricula) 
+                                      && v.getTipo().equals(tipo)
+                                      && this.velMedia == v.getVelMedia()
                                       && this.custo == v.getCusto() 
                                       && this.fiabilidade == v.getFiabilidade()
                                       && this.disp == v.getDisp()
@@ -109,7 +117,8 @@ public abstract class Carro implements Serializable
         s.append("A velocidade média é: " + velMedia +";\n");
         s.append("O custo é: " + custo + ";\n"); 
         s.append("Fiabilidade: " + fiabilidade + ";\n"); 
-        s.append("O id do taxi é " + id + ";\n"); 
+        s.append("A matricula do taxi é " + matricula + ";\n"); 
+        s.append("O tipo do taxi é " + tipo + ";\n"); 
         s.append("A localização é: " + local + ";\n");
         s.append("A disponibilidade: " + disp + ".");
         return s.toString();
