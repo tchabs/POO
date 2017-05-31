@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Empresa()
+comment1.params=e
+comment1.target=Empresa(Empresa)
+comment2.params=
+comment2.target=long\ getId()
+comment3.params=
+comment3.target=CatUtilizadores\ getMotoristas()
+comment4.params=
+comment4.target=CatViaturas\ getViaturas()
+comment5.params=m
+comment5.target=void\ setMotoristas(CatUtilizadores)
+comment6.params=v
+comment6.target=void\ setViaturas(CatViaturas)
+comment7.params=
+comment7.target=Empresa\ clone()
+comment8.params=obj
+comment8.target=boolean\ equals(java.lang.Object)
+numComments=9

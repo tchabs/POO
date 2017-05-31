@@ -1,18 +1,18 @@
 #BlueJ class context
 comment0.params=
-comment0.target=CatClientes()
+comment0.target=CatViaturas()
 comment1.params=collection
-comment1.target=CatClientes(java.util.Collection)
-comment2.params=catClientes
-comment2.target=CatClientes(CatClientes)
+comment1.target=CatViaturas(java.util.Collection)
+comment2.params=catViaturas
+comment2.target=CatViaturas(CatViaturas)
 comment3.params=
 comment3.target=int\ sizeCatalog()
-comment4.params=cliente
-comment4.target=void\ insertCliente(Cliente)
+comment4.params=viatura
+comment4.target=void\ insertViatura(Viatura)
 comment5.params=
 comment5.target=void\ clearC()
 comment6.params=obj
 comment6.target=boolean\ equals(java.lang.Object)
 comment7.params=
-comment7.target=CatClientes\ clone()
+comment7.target=CatViaturas\ clone()
 numComments=8

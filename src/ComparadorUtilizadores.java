@@ -2,9 +2,9 @@ import java.util.Comparator;
 import java.util.TreeSet;
 import java.io.Serializable;
 
-public  class ComparadorMotoristas implements Comparator<Motorista>, Serializable{
+public  class ComparadorUtilizadores implements Comparator<Utilizador>, Serializable{
 
-    public int compare(Motorista a, Motorista b) {
+    public int compare(Utilizador a, Utilizador b) {
         if(a==null || b==null) return -2;
         
 		String emailA = a.getEmail();

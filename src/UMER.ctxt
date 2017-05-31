@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=
+comment0.target=UMER()
+comment1.params=u
+comment1.target=UMER(UMER)
+comment2.params=
+comment2.target=CatUtilizadores\ getCatU()
+comment3.params=
+comment3.target=CatViaturas\ getCatV()
+comment4.params=catU
+comment4.target=void\ setCatU(CatUtilizadores)
+comment5.params=catV
+comment5.target=void\ setCatV(CatViaturas)
+comment6.params=
+comment6.target=UMER\ iniciar()
+comment7.params=
+comment7.target=void\ gravar()
+numComments=8
