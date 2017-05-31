@@ -103,12 +103,24 @@ public abstract class Utilizador implements Serializable
     public void setCatViagens(TreeSet<Viagem> catViagens) {
         this.catViagens = catViagens;
     }
-
-	public int checkTipoU() {
-		if(this instanceof Cliente) return 1;
-		if(this instanceof Motorista) return 2;
-		else return -1;
-	}
+    
+    public void insertViagem(Viagem viagem) {
+        catViagens.add(viagem);
+    }
+    
+     
+    public double totalFaturado() {
+        return catViagens.stream()
+                            .mapToDouble(x -> x.getPreco())
+                            .sum();
+                        }
+        
+    
+    public int checkTipoU() {
+        if(this instanceof Cliente) return 1;
+        if(this instanceof Motorista) return 2;
+        else return -1;
+    }
 
     public abstract Utilizador clone();
 

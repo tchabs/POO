@@ -1,8 +1,9 @@
 import java.util.TreeSet;
+import java.util.List;
 import java.util.Comparator;
 import java.io.Serializable;
 import java.util.Collection;
-
+import java.util.stream.Collectors;
 
 public class CatUtilizadores implements Serializable
 {
@@ -35,7 +36,31 @@ public class CatUtilizadores implements Serializable
     public void insertUtilizador(Utilizador utilizador){
         this.catalog.add(utilizador);
     }
-
+    
+    public boolean contem(Utilizador utilizador) {
+        return this.catalog.contains(utilizador);
+    }
+    
+    public Utilizador findU(String email) throws EmailException {
+        
+         List<Utilizador> s = this.catalog
+            .stream()
+            .filter(x -> x.getEmail() == email)
+            .collect(Collectors.toList());
+            
+         if(s.isEmpty()) throw new EmailException("Email nao registado no sistema");
+         else return s.stream().findFirst().get();
+            
+    }
+    
+    public double totalFaturado() {
+        return this.catalog.stream().mapToDouble(x -> x.totalFaturado()).sum();
+    }
+    
+    public List<Cliente> top10() {
+        return this.catalog.stream().filter(x -> x instanceof Cliente).sorted(new ComparadorTop10()).limit(10).collect(Collectors.toList());
+    }
+    
     public void clearC() {
         this.catalog.clear();
     }

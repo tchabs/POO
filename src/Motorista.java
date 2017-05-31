@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Motorista extends Utilizador
 {
@@ -6,7 +7,7 @@ public class Motorista extends Utilizador
     private int classificacao;
     private long kms;
     private boolean disponivel;
-    
+    private ArrayList<Integer> aval;
     
     public Motorista()
     {
@@ -15,6 +16,7 @@ public class Motorista extends Utilizador
         classificacao = 0;
         kms = 0;
         disponivel = false;
+        aval = new ArrayList<>();
     }    
         
         
@@ -26,6 +28,7 @@ public class Motorista extends Utilizador
         this.classificacao = classificacao;
         this.kms = kms;
         this.disponivel = disponivel;
+        aval = new ArrayList<>();
     }
     
     public Motorista(Motorista m){
@@ -34,6 +37,7 @@ public class Motorista extends Utilizador
         this.classificacao = m.getClassificacao();
         this.kms = m.getKms();
         this.disponivel = m.getDisponivel();
+        this.aval = m.getAval();
     }
     
     public int getPontualidade() {
@@ -52,6 +56,12 @@ public class Motorista extends Utilizador
         return this.disponivel;
     }
     
+    public ArrayList<Integer> getAval() {
+        return this.aval
+            .stream()
+            .collect(Collectors.toCollection(ArrayList::new));
+    }
+           
     public void setPontualidade(int pontualidade) {
         this.pontualidade = pontualidade;
     }
@@ -68,6 +78,13 @@ public class Motorista extends Utilizador
         this.disponivel = disponivel;
     }
     
+    public void setAval(ArrayList<Integer> aval){
+      this.aval = aval.stream().collect(Collectors.toCollection(ArrayList::new));
+    }
+    
+    public void addAval(int aval) {
+        this.aval.add(aval);
+    }
     
     public Motorista clone (){
         return new Motorista(this);

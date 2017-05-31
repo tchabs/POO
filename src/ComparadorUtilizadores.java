@@ -7,10 +7,10 @@ public  class ComparadorUtilizadores implements Comparator<Utilizador>, Serializ
     public int compare(Utilizador a, Utilizador b) {
         if(a==null || b==null) return -2;
         
-		String emailA = a.getEmail();
-		String emailB = b.getEmail();
-
-		return emailB.compareTo(emailA);
+        String emailA = a.getEmail();
+        String emailB = b.getEmail();
+        int x = emailB.compareTo(emailA);
+        return x;
 
   }
 }

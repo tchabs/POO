@@ -26,6 +26,13 @@ public class Localizacao implements Serializable
         this.y = y;
     }
     
+    public double distCalc(Localizacao l){
+        double x = Math.pow(this.x - l.getX(), 2); 
+        double y = Math.pow(this.y - l.getY(), 2);
+
+        return Math.sqrt(x+y);
+    }
+    
     public boolean equals(Object obj){
        if (obj == this) return true;
        if (obj == null || obj.getClass() != this.getClass()) return false;

@@ -42,11 +42,24 @@ public class Empresa implements Serializable{
     public void setViaturas(CatViaturas v) {
         this.viaturas = v.clone();
     }
-
+    
+    public void insertViaturaE(Viatura v) {
+        viaturas.insertViatura(v);
+    }
+    
+    public void insertMotoristaE(Motorista m) {
+        motoristas.insertUtilizador(m);
+    }
+    
+    public double totalFaturado() {
+        return this.motoristas.totalFaturado();
+    }
+        
+    
     public Empresa clone(){
         return new Empresa(this);
     }
-
+       
     public boolean equals(Object obj){
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;

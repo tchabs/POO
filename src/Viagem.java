@@ -4,7 +4,6 @@ public class Viagem implements Serializable {
     
     private Localizacao inicioL;
     private Localizacao fimL;
-    private Viatura viatura;
     private int classificacao;
     private double tempo;
     private double preco;
@@ -15,7 +14,6 @@ public class Viagem implements Serializable {
     public Viagem() {
         inicioL = null;
         fimL = null;
-        viatura = null;
         classificacao = 0;
         tempo = 0.0;
         preco = 0.0;
@@ -26,7 +24,6 @@ public class Viagem implements Serializable {
     public Viagem(Localizacao inicioL,Localizacao fimL,Viatura viatura,int classificacao,double tempo,double preco,Calendar inicioT,Calendar fimT){
         this.inicioL = inicioL;
         this.fimL = fimL;
-        this.viatura = viatura;
         this.classificacao = classificacao;
         this.tempo = tempo;
         this.preco = preco;
@@ -37,7 +34,6 @@ public class Viagem implements Serializable {
     public Viagem(Viagem viagem) {
         inicioL = viagem.inicioL;
         fimL = viagem.fimL;
-        viatura = viagem.viatura;
         classificacao = viagem.classificacao;
         tempo = viagem.tempo;
         preco = viagem.preco;
@@ -51,10 +47,6 @@ public class Viagem implements Serializable {
         
     public Localizacao getFimL() {
         return this.fimL;
-    }
-
-    public Viatura getViatura() {
-        return this.viatura;
     }
 
     public int getClassificacao() {
@@ -85,14 +77,10 @@ public class Viagem implements Serializable {
         this.fimL = l;
     }
 
-    public void setViatura(Viatura l){
-        this.viatura = l;
-    }
-
     public void setClassificacao(int x){
         this.classificacao = x;
     }
-    
+   
 
     public void setTempo(double x){
         this.tempo = x;
@@ -123,7 +111,6 @@ public class Viagem implements Serializable {
        return m.getInicioL() == this.inicioL
        && m.getClassificacao() == this.classificacao
        && m.getFimL() == this.fimL 
-       && m.getViatura() == this.viatura
        && m.getTempo() == this.tempo
        && m.getPreco() == this.preco;
      }
@@ -132,7 +119,6 @@ public class Viagem implements Serializable {
        StringBuilder sb = new StringBuilder();
        sb.append("O inicioL foi em " + this.inicioL +"\n");
        sb.append("O fimL foi em :" +this.fimL +"\n");
-       sb.append("A viatura foi do tipo " + this.viatura +"\n");
        sb.append("O tempo da viagem foi " +this.tempo +"\n");
        sb.append("O preço foi " +this.preco +"\n");
        return sb.toString();
