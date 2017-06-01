@@ -74,7 +74,7 @@ public class UMERApp{
     private static void menu(){
 
         if(um.getUtilizadorC() == null)
-            running_menu_cliente();
+            running_menu_principal();
         else{
             Utilizador util = um.getUtilizadorC();
             if(util.getClass().getSimpleName().equals("Motorista"))
@@ -370,6 +370,8 @@ public class UMERApp{
     }
     
     private static void listaMotoristaEmp(){
+        Utilizador user = getUtilizadorC();
         
+        if(user instanceof MotoristaE) 
     }
 }
