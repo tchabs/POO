@@ -73,13 +73,17 @@ public class UMERApp{
      */
     private static void menu(){
 
-        if(um.getUtilizadorC() == null)
+      if(um.getUtilizadorC() == null)
             running_menu_principal();
+
         else{
             Utilizador util = um.getUtilizadorC();
             if(util.getClass().getSimpleName().equals("Motorista"))
                 running_menu_motorista();
-            else running_menu_cliente();
+            else if(util.getClass().getSimpleName().equals("Cliente") )
+                running_menu_cliente();
+            else
+                running_menu_motoristaEmp();
         }
     }
     
@@ -250,7 +254,7 @@ public class UMERApp{
         do{
             menu_cliente.executa();
 
-            switch(mCliente.getOpcao()){
+            switch(menu_cliente.getOpcao()){
                 /*case 1: avaliaMotorista();
                         break;
                 case 2: consultaHistorico();
@@ -266,7 +270,7 @@ public class UMERApp{
         do{
             menu_motorista.executa();
             /*
-            switch(mMotorista.getOpcao()){
+            switch(menu_motorista.getOpcao()){
                 case 1: adicionaVeiculo();
                         break;
                 case 2: associaVeiculo();
@@ -279,17 +283,17 @@ public class UMERApp{
                         break;
                 case 6: sinalizaDisp();
                         break;
-                case 7: um.fecharSessao();
+                case 7: um.fechaSessao();
             }*/
-        }while(mMotorista.getOpcao() != 0);
+        }while(menu_motorista.getOpcao() != 0);
     }
 
     private static void running_menu_motoristaEmp(){
         do{
             menu_motoristaEmp.executa();
-            
+            /*
             switch(menu_motoristaEmp.getOpcao()){
-                /*case 1: adicionaVeiculo();
+                case 1: adicionaVeiculo();
                         break;
                 case 2: associaVeiculo();
                         break;
@@ -304,74 +308,77 @@ public class UMERApp{
                 case 7: sinalizaDisp();
                         break;
                 case 8: desassociaEmpresa();
-                        break;*/
-                case 9: um.fecharSessao();
-            }
-        }while(mMotoristaEmp.getOpcao() != 0);
+                        break;
+                case 9: um.fechaSessao();
+            }*/
+        }while(menu_motoristaEmp.getOpcao() != 0);
     }
 
-    private static void carregaMenuSolicita(){
+    private static void running_menu_solicita(){
         do{
-            mSolicitar.executa();
+            menu_solicita.executa();
             /*
-            switch(mSolicitar.getOpcao()){
+            switch(menu_solicitar.getOpcao()){
                 case 1: solTaxiProx();
                         break;
                 case 2: solTaxiEsp();
                         break;
             }*/
-        }while(mSolicitar.getOpcao() != 0);
+        }while(menu_solicita.getOpcao() != 0);
     }
 
-    private static void registaViagem(){
-        Utilizador user = getUtilizadorC();
-        
-        Scanner is = new Scanner(System.in);
-        int classificacao, coordXinicial, coordYinicial, coordXfinal, coordYfinal;
-        double tempo, preco;
-        Calendar inicioT, fimT;
-        System.out.print("Localização inicial em X: \n");
-        coordXinicial = is.nextInt();
-        System.out.print("Localização inicial em Y: \n ");
-        coordYinicial = is.nextInt();
-        System.out.print("Localização final em X: \n");
-        coordXfinal = is.nextInt();
-        System.out.print("Localização final em Y: \n ");
-        coordYfinal = is.nextInt();
-        System.out.print("Classificação: \n ");
-        classificacao = is.nextInt();
-        System.out.print("Tempo de viagem: \n ");
-        tempo = is.nextDouble();
-        System.out.print("Preço da viagem: \n ");
-        preco = is.nextDouble();
-        System.out.print("Data do inicio da viagem: \n ");
-        inicioT = is.nextDouble();
-        System.out.print("Data do fim da viagem: \n ");
-        fimT = is.nextDouble();
-        /*ESTA CENA ESTA MAL*/ fimT = is.nextDouble();
-        
-        Localizacao inicio = Localizacao(coordXinicial, coordYinicial);
-        Localizacao fim = Localizacao(coordXfinal, coordYfinal);
-        Viagem v = Viagem(inicio, fim, classificacao, tempo, preco, inicioT, fimT);
-        
-        user.catViagens.add(v.clone());
+   private static void top10Clientes(){
+       List<Cliente> top = top10();
+       StringBuilder sb = new StringBuilder();
+       int i;
+       for(i=0; i<10; i++  ){
+         sb.append(i+1).append(top.get(i).getNome()).append("\n");  
+        }
+       
     }
-    
-    private static void sinalizaDisp(){
-        Utilizador user = getUtilizadorC();
-        String disponibilidade;
-        
-        Scanner is = new Scanner(System.in);
-        System.out.print("Disponivel? Sim ou não? \n ");
-        disponibilidade = is.nextLine;
-        
-        if(disponibilidade.equals("sim")) user.setDisponivel(true);
-        else user.setDisponivel(false);
-    }
-    
-    private static void listaMotoristaEmp(){
-        Utilizador user = getUtilizadorC();
-        
-        if(user instanceof MotoristaE) 
-    }
+   private static void registaViagem(){
+          Utilizador user = getUtilizadorC();
+          
+          Scanner is = new Scanner(System.in);
+          int classificacao, coordXinicial, coordYinicial, coordXfinal, coordYfinal;
+          double tempo, preco;
+          Calendar inicioT, fimT;
+          System.out.print("Localização inicial em X: \n");
+          coordXinicial = is.nextInt();
+          System.out.print("Localização inicial em Y: \n ");
+          coordYinicial = is.nextInt();
+          System.out.print("Localização final em X: \n");
+          coordXfinal = is.nextInt();
+          System.out.print("Localização final em Y: \n ");
+          coordYfinal = is.nextInt();
+          System.out.print("Classificação: \n ");
+          classificacao = is.nextInt();
+          System.out.print("Tempo de viagem: \n ");
+          tempo = is.nextDouble();
+          System.out.print("Preço da viagem: \n ");
+          preco = is.nextDouble();
+          System.out.print("Data do inicio da viagem: \n ");
+          inicioT = is.nextDouble();
+          System.out.print("Data do fim da viagem: \n ");
+          fimT = is.nextDouble();
+          /*ESTA CENA ESTA MAL*/ fimT = is.nextDouble();
+          
+          Localizacao inicio = Localizacao(coordXinicial, coordYinicial);
+          Localizacao fim = Localizacao(coordXfinal, coordYfinal);
+          Viagem v = Viagem(inicio, fim, classificacao, tempo, preco, inicioT, fimT);
+          
+          user.catViagens.add(v.clone());
+      }
+      
+      private static void sinalizaDisp(){
+         Utilizador user = um.getUtilizadorC();
+         String disponibilidade;
+          
+         Scanner is = new Scanner(System.in);
+         System.out.print("Disponivel? Sim ou não? \n ");
+         disponibilidade = is.nextLine;
+         
+       if(disponibilidade.equals("sim")) user.setDisponivel(true);
+         else user.setDisponivel(false);
+     }
 }

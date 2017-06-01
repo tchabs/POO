@@ -1,9 +1,11 @@
 import java.util.TreeSet;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.stream.Collectors;
+import java.util.Collections;
 
 public class CatUtilizadores implements Serializable
 {
@@ -58,7 +60,22 @@ public class CatUtilizadores implements Serializable
     }
     
     public List<Cliente> top10() {
-        return this.catalog.stream().filter(x -> x instanceof Cliente).sorted(new ComparadorTop10()).limit(10).collect(Collectors.toList());
+        //return this.catalog.stream().filter(x -> x instanceof Cliente).sorted(new ComparadorTop10()).limit(10).collect(Collectors.toList());
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        int i = 0;
+        for(Utilizador u : this.catalog){
+            if(u instanceof Cliente){
+                Cliente c = (Cliente) u;
+                if(i<this.catalog.size()){
+                    clientes.add(c);
+                    i++;
+                }
+            }
+        }
+        
+        Collections.sort(clientes, new ComparadorTop10());
+        List<Cliente> nova = new ArrayList<>(clientes.subList(0,9));
+        return nova;
     }
     
     public void clearC() {
