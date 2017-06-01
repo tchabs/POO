@@ -1,0 +1,328 @@
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.List;
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.TreeMap;
+import java.util.Set;
+import java.util.HashSet;
+
+public class UMERApp{
+    private static UMER um;
+    private static Menu menu_principal,menu_registo,menu_motorista,menu_motoristaEmp,
+                   menu_cliente,menu_solicitar,menu_veiculo,menu_logado;
+                   
+    private UMERApp() {}
+    
+    /**
+     * Função que faz executar toda a aplicação ImoobliáriaApp.
+     */
+    public static void main(String[] args) {
+        String file_name = "snap.data";
+        carregarMenus();
+        initApp(file_name);
+        apresentarMenu();
+        try {
+            um.gravaObj(file_name);
+            um.log("snap.data", true);
+        }
+        catch (IOException e) {
+            System.out.println("Não consegui gravar os dados!");
+        }
+        System.out.println("Volte sempre!");
+    }
+
+    /**
+     * Apresenta o menu principal.
+     */
+    private static void apresentarMenu(){
+        int running = 1;
+
+        do {
+            if(um.getUtilizador() != null){
+                menu_logado.executa();
+                switch(menu_logado.getOpcao()){
+                    case 1: menu();
+                            break;
+                    case 2: fecharSessao();
+                            break;
+                    case 0: running = 0;
+                }
+
+            }
+            else{
+                menu_principal.executa();
+                switch (menu_principal.getOpcao()) {
+                    case 1: registo();
+                            break;
+                    case 2: iniciarSessao();
+                            break;
+                    case 3: menu();
+                            break;
+                    case 0: running = 0;
+                }
+            }
+        } while (running!=0);
+
+    }
+
+    /**
+     * Apresenta o Menu consoante o tipo de utilizador com sessão iniciada.
+     */
+    private static void menu(){
+
+        if(um.getUtilizador() == null)
+            running_menu_comprador();
+        else{
+            Utilizador util = um.getUtilizador();
+            if(util.getClass().getSimpleName().equals("Motorista"))
+                running_menu_vendedor();
+            else running_menu_cliente();
+        }
+    }
+    
+    /**
+     * Carrega todos os menus para apresentar.
+     */
+    private static void carregarMenus() {
+        String[] logado = {"Menu",
+                        "Fechar sessão"};
+        String[] principal = {"Iniciar Sessão",
+                               "Registar Utilizador",
+                               "Lista de Empresas",
+                               "Top 10 Clientes",
+                               "Top 5 Motoristas"};
+                               
+        String [] registo = {"Motorista",
+                           "Cliente"};
+                           
+        String [] motorista = {"Adicionar Veiculo",
+                              "Associar Veiculo",
+                              "Associar Empresa",
+                              "Consultar Historico",
+                              "Registar Viagem",
+                              "Sinalizar Disponibilidade",
+                               "Terminar Sessão"};
+                               
+        String [] motoristaEmp = {"Adicionar Veiculo",
+                                 "Associar Veiculo",
+                                 "Consultar Historico",
+                                 "Lista de Motoristas da Empresa",
+                                 "Lista de Viaturas duma Empresa",
+                                 "Registar Viagem",
+                                 "Sinalizar Disponibilidade",
+                                 "Desassociar Empresa",
+                                 "Terminar Sessão"};
+                           
+        String [] cliente = {"Avaliar Motorista",
+                            "Consultar Historico",
+                            "Solicitar Viagem",
+                            "Terminar Sessão"};
+                           
+        String [] solicitar = {"Solicitar taxi mais próximo",
+                            "Solicitar taxi especifico"};
+        
+        String [] veiculo = {"Carrinha",
+                            "Carro",
+                            "Mota"};
+        
+        menu_logado = new Menu(logado);
+        menu_principal = new Menu(principal);
+        menu_registo = new Menu(registo);
+        menu_motorista = new Menu(motorista);
+        menu_motoristaEmp = new Menu(motoristaEmp);
+        menu_cliente = new Menu(cliente);
+        menu_veiculo = new Menu(veiculo);
+    }
+
+    /**
+     * Carrega o estado da aplicação da última vez que esta foi fechada.
+     * @param fich
+     */
+    private static void initApp(String fich){
+        try {
+            um = UMER.leObj(fich);
+        }
+        catch (IOException e) {
+            um = new UMER();
+            System.out.println("Não consegui ler os dados!\nErro de leitura.");
+        }
+        catch (ClassNotFoundException e) {
+            um = new UMER();
+            System.out.println("Não consegui ler os dados!\nFicheiro com formato desconhecido.");
+        }
+        catch (ClassCastException e) {
+            um = new UMER();
+            System.out.println("Não consegui ler os dados!\nErro de formato.");
+        }
+    }
+
+    /**
+     * Registo na UMERApp
+     */
+    private static void registarUtilizador(){
+        String email, nome, password, morada, dataNascimento;
+        Utilizador user = null;;
+        Scanner is = new Scanner(System.in);
+
+        menu_registo.executa();
+        
+            System.out.print("Nome: ");
+            nome = is.nextLine();
+            System.out.print("Email: ");
+            email = is.nextLine();
+            System.out.print("Password: ");
+            password = is.nextLine();
+            System.out.print("Morada: ");
+            morada = is.nextLine();
+            System.out.print("Data de nascimento: ");
+            dataNascimento = is.nextLine();
+
+            switch(menu_registo.getOpcao()){
+                case 0: input.close();
+                        System.out.println("Cancelou");
+                case 1: user = new Motorista(email,nome,password,morada,dataNascimento, 0, 0, 0, false);
+                        break;
+                case 2: user = new Cliente(email,nome,password,morada,dataNascimento);
+                        break;
+            }
+            try{
+                um.registarUtilizador(user);
+            }
+            catch(UtilizadorExistenteException e){
+                System.out.println("Este utizador já existe!");
+            }
+            is.close();
+        }
+       
+    
+
+    /**
+     * Inicio de sessão na UMERApp.
+     */
+    private static void iniciarSessao(){
+        Scanner is = new Scanner(System.in);
+        String email,password;
+        System.out.print("E-mail: ");
+        email = is.nextLine();
+        System.out.print("Password: ");
+        password = is.nextLine();
+
+        try{
+            um.signIn(email,password);
+        }
+        catch(SemAutorizacaoException e){
+            System.out.println(e.getMessage());
+        }
+
+        is.close();
+    }
+
+    /**
+     * Fechar sessão na ImobiliariaApp.
+     */
+    private static void fecharSessao(){
+        um.sigOut();
+    }
+
+    private static void running_menu_principal(){
+        do{
+           menu_principal.executa();
+
+           switch(menu_principal.getOpcao()){
+                case 1: iniciarSessao();
+                        break;
+                case 2: registarUtilizador();
+                        break;
+               /*case 3: listaEmpresas();
+                        break;
+                case 4: top10Clientes();
+                        break;
+                case 5: top5Motoristas();
+                        break;*/
+           }
+        }while(menu_principal.getOpcao() != 0);
+    }
+
+    private static void running_menu_cliente(){
+        do{
+            menu_cliente.executa();
+
+            switch(mCliente.getOpcao()){
+                /*case 1: avaliaMotorista();
+                        break;
+                case 2: consultaHistorico();
+                        break;*/
+                case 3: running_menu_solicita();
+                        break;
+                case 4: um.fecharSessao();
+            }
+        }while(menu_cliente.getOpcao() != 0);
+    }
+
+    private static void running_menu_motorista(){
+        do{
+            menu_motorista.executa();
+            /*
+            switch(mMotorista.getOpcao()){
+                case 1: adicionaVeiculo();
+                        break;
+                case 2: associaVeiculo();
+                        break;
+                case 3: associaEmpresa();
+                        break;
+                case 4: consultaHistorico();
+                        break;
+                case 5: registaViagem();
+                        break;
+                case 6: sinalizaDisp();
+                        break;
+                case 7: umer.fechaSessao();
+            }*/
+        }while(mMotorista.getOpcao() != 0);
+    }
+
+    private static void carregaMenuME(){
+        do{
+            mMotoristaEmp.executa();
+            /*
+            switch(mMotorista.getOpcao()){
+                case 1: adicionaVeiculo();
+                        break;
+                case 2: associaVeiculo();
+                        break;
+                case 3: consultaHistorico();
+                        break;
+                case 4: listaMotoristaEmp();
+                        break;
+                case 5: listaVeiculoEmp();
+                        break;
+                case 6: registaViagem();
+                        break;
+                case 7: sinalizaDisp();
+                        break;
+                case 8: desassociaEmpresa();
+                        break;
+                case 9: umer.fechaSessao();
+            }*/
+        }while(mMotoristaEmp.getOpcao() != 0);
+    }
+
+    private static void carregaMenuSolicita(){
+        do{
+            mSolicitar.executa();
+            /*
+            switch(mSolicitar.getOpcao()){
+                case 1: solTaxiProx();
+                        break;
+                case 2: solTaxiEsp();
+                        break;
+            }*/
+        }while(mSolicitar.getOpcao() != 0);
+    }
+
+
+}

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=opcoes
+comment0.target=Menu(java.lang.String[])
+comment0.text=\n\ Construtor\ para\ objetos\ da\ classe\ Menu\n
+comment1.params=
+comment1.target=void\ executa()
+comment1.text=\n\ Fun\u00E7\u00E3o\ para\ executar\ o\ menu.\n
+comment2.params=
+comment2.target=void\ showMenu()
+comment2.text=\n\ Fun\u00E7\u00E3o\ para\ mostrar\ o\ menu.\n
+comment3.params=
+comment3.target=int\ lerOpcao()
+comment3.text=\n\ Fun\u00E7\u00E3o\ ler\ uma\ op\u00E7\u00E3o\ do\ menu.\n
+comment4.params=
+comment4.target=int\ getOpcao()
+comment4.text=\n\ Obter\ op\u00E7\u00E3o\ selecionada.\n\ @return\ \n
+numComments=5

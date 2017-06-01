@@ -28,7 +28,7 @@ public class Motorista extends Utilizador
         this.classificacao = classificacao;
         this.kms = kms;
         this.disponivel = disponivel;
-        aval = new ArrayList<>();
+        this.aval = new ArrayList<>();
     }
     
     public Motorista(Motorista m){
