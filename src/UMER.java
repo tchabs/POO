@@ -29,7 +29,10 @@ public class UMER implements Serializable
         catU = new CatUtilizadores(u.catU);
         catV = new CatViaturas(u.catV);
     }
-
+    public Utilizador getUtilizadorC(){
+        return this.uConectado;
+    }
+    
     public CatUtilizadores getCatU() {
         return this.catU.clone();
     }
@@ -78,7 +81,7 @@ public class UMER implements Serializable
         this.uConectado = null;
     }
     
-    public void addViatura( Viatura v) throws PermissionException,ViaturaException{
+    public void addViatura(Viatura v) throws PermissionException,ViaturaException{
         if(uConectado.checkTipoU()!=2) throw new PermissionException();
         if(catV.contem(v)) throw new ViaturaException();
         catV.insertViatura(v);
