@@ -26,8 +26,7 @@ public class UMERApp{
         initApp(file_name);
         apresentarMenu();
         try {
-            um.gravaObj(file_name);
-            um.log("snap.data", true);
+            um.save();
         }
         catch (IOException e) {
             System.out.println("Não consegui gravar os dados!");
@@ -251,7 +250,7 @@ public class UMERApp{
         do{
             menu_cliente.executa();
 
-            switch(mCliente.getOpcao()){
+            switch(menu_cliente.getOpcao()){
                 /*case 1: avaliaMotorista();
                         break;
                 case 2: consultaHistorico();
@@ -267,7 +266,7 @@ public class UMERApp{
         do{
             menu_motorista.executa();
             /*
-            switch(mMotorista.getOpcao()){
+            switch(menu_motorista.getOpcao()){
                 case 1: adicionaVeiculo();
                         break;
                 case 2: associaVeiculo();
@@ -280,16 +279,16 @@ public class UMERApp{
                         break;
                 case 6: sinalizaDisp();
                         break;
-                case 7: umer.fechaSessao();
+                case 7: um.fechaSessao();
             }*/
-        }while(mMotorista.getOpcao() != 0);
+        }while(menu_motorista.getOpcao() != 0);
     }
 
-    private static void carregaMenuME(){
+    private static void running_menu_motoristaEmp(){
         do{
-            mMotoristaEmp.executa();
+            menu_motoristaEmp.executa();
             /*
-            switch(mMotorista.getOpcao()){
+            switch(menu_motoristaEmp.getOpcao()){
                 case 1: adicionaVeiculo();
                         break;
                 case 2: associaVeiculo();
@@ -306,23 +305,35 @@ public class UMERApp{
                         break;
                 case 8: desassociaEmpresa();
                         break;
-                case 9: umer.fechaSessao();
+                case 9: um.fechaSessao();
             }*/
-        }while(mMotoristaEmp.getOpcao() != 0);
+        }while(menu_motoristaEmp.getOpcao() != 0);
     }
 
-    private static void carregaMenuSolicita(){
+    private static void running_menu_solicita(){
         do{
-            mSolicitar.executa();
+            menu_solicita.executa();
             /*
-            switch(mSolicitar.getOpcao()){
+            switch(menu_solicitar.getOpcao()){
                 case 1: solTaxiProx();
                         break;
                 case 2: solTaxiEsp();
                         break;
             }*/
-        }while(mSolicitar.getOpcao() != 0);
+        }while(menu_solicita.getOpcao() != 0);
     }
 
-
+   private static void top10Clientes(){
+       List<Cliente> top = top10();
+       StringBuilder sb = new StringBuilder();
+       int i;
+       for(i=0; i<10; i++){
+         sb.append(i+1).append(top.get(i).getNome()).append("\n");  
+        }
+       
+    }
+    
+   private static void top5Motorista(){
+    
+    }
 }
