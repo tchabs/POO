@@ -369,5 +369,7 @@ public class UMERApp{
         else user.setDisponivel(false);
     }
     
-    
+    private static void listaMotoristaEmp(){
+        
+    }
 }
