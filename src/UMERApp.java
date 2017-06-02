@@ -395,7 +395,7 @@ public class UMERApp{
    private static void avaliaMotorista(){
         //pode nao existir motorista
         Scanner scan = new Scanner(System.in);
-        System.out.println("Digite o email do motorista:\n");
+        System.out.println("Digite o email do motorista:");
         String email=scan.nextLine();
         System.out.println("Classifique o seu motorista (de 0 a 100): ");
         int c = scan.nextInt();
@@ -406,6 +406,21 @@ public class UMERApp{
         else{
             System.out.println("A avaliação não se encontra dentro dos limites");
         }
+    }
+   
+   private static void adicionaVeiculo(){
+       Scanner scan = new Scanner(System.in);
+       System.out.println("Digite a matricula da viatura:");
+       String matricula= scan.nextLine();
+       System.out.println("Velocidade média da viatura:");
+       double velMedia= scan.nextDouble();
+       System.out.println("Custo:");
+       double custo= scan.nextDouble();
+       System.out.println("Fiablidade:");
+       double fiablidade = scan.nextDouble();
+       
+       Viatura v = Viatura(matricula, velMedia, custo, fiablidade);
+       insertViatura(v);
     }
    
 }
