@@ -14,7 +14,7 @@ public class CatUtilizadores implements Serializable
     public CatUtilizadores(){
         this.catalog = new TreeSet<Utilizador>(new ComparadorUtilizadores());
     }
-
+    
     public CatUtilizadores(Collection<Utilizador> collection) {
         this.catalog = new TreeSet<Utilizador>(new ComparadorUtilizadores());
 
@@ -30,7 +30,16 @@ public class CatUtilizadores implements Serializable
             this.catalog.add(utilizador);
         }
     }
-
+    
+    public TreeSet<Utilizador> getCat(){
+        TreeSet<Utilizador> res = new TreeSet<Utilizador>();
+        
+        for(Utilizador a : catalog){
+            res.add(a.clone());
+        }
+        
+        return res;
+    }
     public int sizeCatalog() {
         return this.catalog.size();
     }
