@@ -335,9 +335,24 @@ public class UMERApp{
          sb.append(i+1).append(top.get(i).getNome()).append("\n");  
         }
        
+<<<<<<< HEAD
   }
   
   private static void registaViagem(){
+=======
+    }
+    
+   private static void top5Motoristas(){
+       List<Motorista> top = top5();
+       StringBuilder sb = new StringBuilder();
+       int i;
+       for(i=0; i<5; i++  ){
+         sb.append(i+1).append(top.get(i).getNome()).append("\n");  
+        }
+    } 
+   
+    private static void registaViagem(){
+>>>>>>> 5a427ddd7e6e1ca85940dbfaa85771c672d2f57e
           Utilizador user = getUtilizadorC();
           
           Scanner is = new Scanner(System.in);
