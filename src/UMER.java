@@ -30,6 +30,10 @@ public class UMER implements Serializable
         catV = new CatViaturas(u.catV);
     }
     
+    public ArrayList<Empresa> getCatE(){
+      return this.catE;
+    }
+    
     public Utilizador getUtilizadorC(){
         return this.uConectado;
     }

@@ -330,15 +330,23 @@ public class UMERApp{
         }while(menu_solicitar.getOpcao() != 0);
     }
 
+<<<<<<< HEAD
     private static void top10Clientes(){
        List<Cliente> top = um.getCatU().top10();
+=======
+   private static void top10Clientes(){
+       List<Cliente> top = top10();
+>>>>>>> 8746f128aadd2abcc736a4f19ec60e0d7407fd15
        StringBuilder sb = new StringBuilder();
        int i;
        for(i=0; i<10; i++){
          sb.append(i+1).append(top.get(i).getNome()).append("\n");  
         }
        
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8746f128aadd2abcc736a4f19ec60e0d7407fd15
     }
     
    private static void top5Motoristas(){
@@ -349,9 +357,49 @@ public class UMERApp{
          sb.append(i+1).append(top.get(i).getNome()).append("\n");  
         }
     } 
+<<<<<<< HEAD
       
   private static void sinalizaDisp(){
          Motorista user = (Motorista) um.getUtilizadorC();
+=======
+   
+    private static void registaViagem(){
+          Utilizador user = getUtilizadorC();
+          
+          Scanner is = new Scanner(System.in);
+          int classificacao, coordXinicial, coordYinicial, coordXfinal, coordYfinal;
+          double tempo, preco;
+          Calendar inicioT, fimT;
+          System.out.print("Localização inicial em X: \n");
+          coordXinicial = is.nextInt();
+          System.out.print("Localização inicial em Y: \n ");
+          coordYinicial = is.nextInt();
+          System.out.print("Localização final em X: \n");
+          coordXfinal = is.nextInt();
+          System.out.print("Localização final em Y: \n ");
+          coordYfinal = is.nextInt();
+          System.out.print("Classificação: \n ");
+          classificacao = is.nextInt();
+          System.out.print("Tempo de viagem: \n ");
+          tempo = is.nextDouble();
+          System.out.print("Preço da viagem: \n ");
+          preco = is.nextDouble();
+          System.out.print("Data do inicio da viagem: \n ");
+          inicioT = is.nextDouble();
+          System.out.print("Data do fim da viagem: \n ");
+          fimT = is.nextDouble();
+          /*ESTA CENA ESTA MAL*/ fimT = is.nextDouble();
+          
+          Localizacao inicio = Localizacao(coordXinicial, coordYinicial);
+          Localizacao fim = Localizacao(coordXfinal, coordYfinal);
+          Viagem v = Viagem(inicio, fim, classificacao, tempo, preco, inicioT, fimT);
+          
+          user.catViagens.add(v.clone());
+      }
+      
+   private static void sinalizaDisp(){
+         Utilizador user = um.getUtilizadorC();
+>>>>>>> 8746f128aadd2abcc736a4f19ec60e0d7407fd15
          String disponibilidade;
           
          Scanner is = new Scanner(System.in);
@@ -359,8 +407,9 @@ public class UMERApp{
          System.out.print("Disponivel? Sim ou não? \n ");
          disponibilidade = is.nextLine();
          
-         if(disponibilidade.equals("sim")) user.setDisponivel(true);
+       if(disponibilidade.equals("sim")) user.setDisponivel(true);
          else user.setDisponivel(false);
+<<<<<<< HEAD
   }
   
   private static void listaMotoristaEmp(){
@@ -415,4 +464,60 @@ public class UMERApp{
       String s = "near by";
       um.callACab(f, s, e);
   }
+=======
+   }
+   
+   private static void avaliaMotorista(){
+        //pode nao existir motorista
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o email do motorista:");
+        String email=scan.nextLine();
+        System.out.println("Classifique o seu motorista (de 0 a 100): ");
+        int c = scan.nextInt();
+        if(c>0 && c<100){
+            Motorista m = (Motorista) um.findU(email);
+            setFeedback(c,m);
+        }
+        else{
+            System.out.println("A avaliação não se encontra dentro dos limites");
+        }
+    }
+   
+   private static void adicionaVeiculo(){
+       Scanner scan = new Scanner(System.in);
+       System.out.println("Digite a matricula da viatura:");
+       String matricula= scan.nextLine();
+       System.out.println("Velocidade média da viatura:");
+       double velMedia= scan.nextDouble();
+       System.out.println("Custo:");
+       double custo= scan.nextDouble();
+       System.out.println("Fiablidade:");
+       double fiablidade = scan.nextDouble();
+       
+       Viatura v = Viatura(matricula, velMedia, custo, fiablidade);
+       insertViatura(v);
+    }
+   
+    private static void AssociaVeiculo(){
+       Utilizador user = um.getUtilizadorC();
+       Scanner scan = new Scanner(System.in);
+       System.out.println("Digite a matricula da viatura a qual se quer associar:");
+       String matricula= scan.nextLine();
+       Viatura v = finV(matricula);
+       v.setMotorista(user);
+       
+    } 
+    
+   private static void listaEempresas(){
+      List<Empresa> emp = new ArrayList<Empresa>();
+      emp = getCatE();
+      StringBuilder sb = new StringBuilder();
+      int i;
+      for(i=0;i<emp.size();i++){
+          sb.append("Empresa: ").append(emp.get(i).toString()).append("\n").append("\n");
+        }
+    } 
+    
+  
+>>>>>>> 8746f128aadd2abcc736a4f19ec60e0d7407fd15
 }
