@@ -15,8 +15,9 @@ import java.lang.ClassNotFoundException;
 import java.lang.Object;
 import java.util.Calendar;
 
+
 public class UMER implements Serializable
-{   
+{
     private Utilizador uConectado;
     private CatUtilizadores catU;
     private CatViaturas catV;
@@ -30,19 +31,15 @@ public class UMER implements Serializable
         catU = new CatUtilizadores(u.catU);
         catV = new CatViaturas(u.catV);
     }
-    
+
     public ArrayList<Empresa> getCatE(){
-        ArrayList<Empresa> emp = new ArrayList<Empresa>();
-        for(Empresa e : this.catE) {
-          emp.add(e.clone());
-        }
-        return emp;
+      return this.catE;
     }
-    
+
     public Utilizador getUtilizadorC(){
         return this.uConectado;
     }
-    
+
     public CatUtilizadores getCatU() {
         return this.catU.clone();
     }
@@ -72,100 +69,107 @@ public class UMER implements Serializable
         save.flush();
         save.close();
     }
-    
+
     public void signUp(Utilizador u) throws EmailException {
         if (catU.contem(u)) throw new EmailException();
         catU.insertUtilizador(u);
     }
-    
+
     public void signIn(String email, String password) throws EmailException,PasswordException {
         Utilizador u=null;
         u = this.catU.findU(email);
-        if(u==null) throw new EmailException();
-        if (u.getPassword()!=password) throw new PasswordException();
+        if(u==null) throw new EmailException("Nao se encontra no sistema");
+        if (!u.getPassword().equals(password)) throw new PasswordException();
         else uConectado = u;
-    
+
     }
-     
+
     public void sigOut() {
         this.uConectado = null;
     }
-    
+
     public void addViatura(Viatura v) throws PermissionException,ViaturaException{
         if(uConectado.checkTipoU()!=2) throw new PermissionException();
         if(catV.contem(v)) throw new ViaturaException();
         catV.insertViatura(v);
     }
-    
+
     public void addViaturaE(Viatura v, Empresa e) throws PermissionException{
         if(uConectado.checkTipoU()!=3 ) throw new PermissionException();
         e.insertViaturaE(v);
     }
-    
+
     public void setDriver(Motorista m, Viatura v) throws PermissionException{
         if(uConectado.checkTipoU() !=2) throw new PermissionException();
         v.setMotorista(m);
     }
-    
+
     public void setEDriver(Motorista m, Empresa e) throws PermissionException{
         if(uConectado.checkTipoU()!=3 ) throw new PermissionException();
         e.insertMotoristaE(m);
     }
-    
+
     public void callACab(Localizacao fim,String matricula,Empresa empresa) throws ViaturaException{
-        
+
         Viagem viagem = new Viagem();
         Viatura v = null;
         viagem.setInicioL(uConectado.getLocal());
         viagem.setFimL(fim);
         viagem.setInicioT(new GregorianCalendar());
-            
+
         if(matricula=="near by") v = getNearByE(viagem.getInicioL(),empresa);
         else if (empresa==null) v = catV.findV(matricula);
         else v = empresa.getViaturas().findV(matricula);
-        
+
         v.insertViagem(viagem);
         uConectado.insertViagem(viagem);
         v.getMotorista().insertViagem(viagem);
     }
-    
-    public Viatura getNearByE(Localizacao local,Empresa empresa) throws ViaturaException{
-        
+
+	public Viatura getNearByE(Localizacao local,Empresa empresa) throws ViaturaException{
+
         if (empresa==null) return catV.getNearBy(local,"any");
         return empresa.getViaturas().getNearBy(local,"any");
     }
-    
+
     public void setFeedback(int aval, Motorista m) throws PermissionException{
         if(uConectado.checkTipoU() != 1) throw new PermissionException();
         m.addAval(aval);
     }
-    
+
     public List<Viagem> viagensCliente(Cliente c, Calendar i, Calendar f){
         return c.getCatViagens()
                 .stream()
-                .filter(v -> (v.getInicioT().after(i) && v.getInicioT().before(f))  
+                .filter(v -> (v.getInicioT().after(i) && v.getInicioT().before(f))
                              || v.getInicioL().equals(i) || v.getInicioL().equals(f))
                 .collect(Collectors.toList());
     }
-    
+
     public List<Viagem> viagensMotorista(Motorista m, Calendar i, Calendar f){
         return m.getCatViagens()
             .stream()
-            .filter(v -> (v.getInicioT().after(i) && v.getInicioT().before(f))  
+            .filter(v -> (v.getInicioT().after(i) && v.getInicioT().before(f))
                              || v.getInicioL().equals(i) || v.getInicioL().equals(f))
             .collect(Collectors.toList());
     }
-    
+
     public double totalFaturado(Viatura v, Empresa e){
-      
+
         if(v==null) {
             return e.totalFaturado();
         }
-        
+
         return catV.totalFaturado();
 
 
     }
+
+    public static UMER leObj(String fich) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fich));
+
+        UMER t = (UMER) ois.readObject();
+
+        ois.close();
+        return t;
+    }
 }
-
-

@@ -50,7 +50,7 @@ public class CatUtilizadores implements Serializable
         
          List<Utilizador> s = this.catalog
             .stream()
-            .filter(x -> x.getEmail() == email)
+            .filter(x -> x.getEmail().equals(email))
             .collect(Collectors.toList());
             
          if(s.isEmpty()) throw new EmailException("Email nao registado no sistema");
