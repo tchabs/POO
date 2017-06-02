@@ -17,11 +17,13 @@ public class Empresa implements Serializable{
         motoristas = new CatUtilizadores();
         viaturas = new CatViaturas();
     }
+    
     public Empresa(Empresa e) {
         this.id = e.getId();
         this.motoristas = e.getMotoristas().clone();
         this.viaturas = e.getViaturas().clone();
     }
+    
     public long getId() {
         return this.id;
     }

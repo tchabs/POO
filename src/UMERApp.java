@@ -401,7 +401,7 @@ public class UMERApp{
         int c = scan.nextInt();
         if(c>0 && c<100){
             Motorista m = (Motorista) um.findU(email);
-            m.addAval(c);
+            setFeedback(c,m);
         }
         else{
             System.out.println("A avaliação não se encontra dentro dos limites");
@@ -431,5 +431,17 @@ public class UMERApp{
        Viatura v = finV(matricula);
        v.setMotorista(user);
        
-    }  
+    } 
+    
+   private static void listaEempresas(){
+      List<Empresa> emp = new ArrayList<Empresa>();
+      emp = getCatE();
+      StringBuilder sb = new StringBuilder();
+      int i;
+      for(i=0;i<emp.size();i++){
+          sb.append("Empresa: ").append(emp.get(i).toString()).append("\n").append("\n");
+        }
+    } 
+    
+  
 }
