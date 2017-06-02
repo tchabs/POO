@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.ClassNotFoundException;
 import java.lang.Object;
+import java.util.Calendar;
 
 public class UMER implements Serializable
 {   
@@ -31,7 +32,11 @@ public class UMER implements Serializable
     }
     
     public ArrayList<Empresa> getCatE(){
-      return this.catE;
+        ArrayList<Empresa> emp = new ArrayList<Empresa>();
+        for(Empresa e : this.catE) {
+          emp.add(e.clone());
+        }
+        return emp;
     }
     
     public Utilizador getUtilizadorC(){
@@ -115,7 +120,7 @@ public class UMER implements Serializable
         viagem.setFimL(fim);
         viagem.setInicioT(new GregorianCalendar());
             
-        if(matricula=="near by") v = getNearBy(viagem.getInicioL(),empresa);
+        if(matricula=="near by") v = getNearByE(viagem.getInicioL(),empresa);
         else if (empresa==null) v = catV.findV(matricula);
         else v = empresa.getViaturas().findV(matricula);
         
@@ -124,10 +129,10 @@ public class UMER implements Serializable
         v.getMotorista().insertViagem(viagem);
     }
     
-    public Viatura getNearBy(Localizacao local,Empresa empresa) throws ViaturaException{
+    public Viatura getNearByE(Localizacao local,Empresa empresa) throws ViaturaException{
         
-        if (empresa==null) return catV.getNearBy(local);
-        return empresa.getViaturas().getNearBy(local);
+        if (empresa==null) return catV.getNearBy(local,"any");
+        return empresa.getViaturas().getNearBy(local,"any");
     }
     
     public void setFeedback(int aval, Motorista m) throws PermissionException{
@@ -135,7 +140,7 @@ public class UMER implements Serializable
         m.addAval(aval);
     }
     
-    public List<Viagem> viagensCliente(Cliente c, GregorianCalendar i, GregorianCalendar f){
+    public List<Viagem> viagensCliente(Cliente c, Calendar i, Calendar f){
         return c.getCatViagens()
                 .stream()
                 .filter(v -> (v.getInicioT().after(i) && v.getInicioT().before(f))  
@@ -143,7 +148,7 @@ public class UMER implements Serializable
                 .collect(Collectors.toList());
     }
     
-    public List<Viagem> viagensMotorista(Motorista m, GregorianCalendar i, GregorianCalendar f){
+    public List<Viagem> viagensMotorista(Motorista m, Calendar i, Calendar f){
         return m.getCatViagens()
             .stream()
             .filter(v -> (v.getInicioT().after(i) && v.getInicioT().before(f))  
@@ -160,15 +165,6 @@ public class UMER implements Serializable
         return catV.totalFaturado();
 
 
-    }
-    
-    public static UMER leObj(String fich) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fich));
-
-        UMER t = (UMER) ois.readObject();
-
-        ois.close();
-        return t;
     }
 }
 

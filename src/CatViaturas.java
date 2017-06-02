@@ -101,4 +101,54 @@ public class CatViaturas implements Serializable
     public CatViaturas clone(){
         return new CatViaturas(this);
     }
+    public Viatura getNearBy(Localizacao local,String tipo) throws ViaturaException{
+        ComparadorDistancia comp = new ComparadorDistancia();
+        String matricula=null;
+
+        TreeMap<String,Double> catD = (TreeMap<String,Double>) this.catalog
+                                                                    .stream()
+                                                                    .collect(Collectors
+                                                                        .toMap(v->v.getMatricula(),
+                                                                               v->v.getLocal().distCalc(local)));
+
+        if(tipo=="any")matricula = catD.entrySet()
+                               .stream()
+                               .min(comp)
+                               .get()
+                               .getKey();
+        else {
+            if(tipo=="carro") {
+
+                    matricula = catD.entrySet()
+                               .stream()
+                               .filter(x -> x instanceof Carro)
+                               .min(comp)
+                               .get()
+                               .getKey();
+                            }
+
+            if(tipo=="moto") {
+
+                    matricula = catD.entrySet()
+                               .stream()
+                               .filter(x -> x instanceof Moto)
+                               .min(comp)
+                               .get()
+                               .getKey();
+                            }
+
+            if(tipo=="carrinha") {
+
+                    matricula = catD.entrySet()
+                               .stream()
+                               .filter(x -> x instanceof Carrinha)
+                               .min(comp)
+                               .get()
+                               .getKey();
+                            }
+        }
+
+        return findV(matricula);
+
+    }
 }
