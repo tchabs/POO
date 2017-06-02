@@ -327,7 +327,7 @@ public class UMERApp{
         }while(menu_solicita.getOpcao() != 0);
     }
 
-  private static void top10Clientes(){
+   private static void top10Clientes(){
        List<Cliente> top = top10();
        StringBuilder sb = new StringBuilder();
        int i;
@@ -335,11 +335,6 @@ public class UMERApp{
          sb.append(i+1).append(top.get(i).getNome()).append("\n");  
         }
        
-<<<<<<< HEAD
-  }
-  
-  private static void registaViagem(){
-=======
     }
     
    private static void top5Motoristas(){
@@ -352,7 +347,6 @@ public class UMERApp{
     } 
    
     private static void registaViagem(){
->>>>>>> 5a427ddd7e6e1ca85940dbfaa85771c672d2f57e
           Utilizador user = getUtilizadorC();
           
           Scanner is = new Scanner(System.in);
@@ -384,9 +378,9 @@ public class UMERApp{
           Viagem v = Viagem(inicio, fim, classificacao, tempo, preco, inicioT, fimT);
           
           user.catViagens.add(v.clone());
-  }
+      }
       
-  private static void sinalizaDisp(){
+   private static void sinalizaDisp(){
          Utilizador user = um.getUtilizadorC();
          String disponibilidade;
           
@@ -394,35 +388,24 @@ public class UMERApp{
          System.out.print("Disponivel? Sim ou não? \n ");
          disponibilidade = is.nextLine;
          
-         if(disponibilidade.equals("sim")) user.setDisponivel(true);
+       if(disponibilidade.equals("sim")) user.setDisponivel(true);
          else user.setDisponivel(false);
-  }
-  
-  private static void listaMotoristaEmp(){
-      Utilizador user = um.getUtilizadorC();
-      
-      if (user instanceof MotoristaE){
-          Empresa atual = user.getEmpresa();
-          CatUtilizadores b = atual.getMotoristas();
-          for(Utilizador a : (b.catalog)){
-              System.out.println(a.getNome()+"\n");
-          }
-      }
-  }
-  
-  private static void listaVeiculoEmp(){
-      Utilizador user = um.getUtilizadorC();
-      
-      if (user instanceof MotoristaE){
-          Empresa atual = user.getEmpresa();
-          CatViaturas b = atual.getViaturas();
-          for(Viatura a : (b.catalog)){
-              System.out.println(a.getMatricula()+"\n");
-          }
-      }
-  }
-  
-  private static void desassociaEmpresa(){
-  
-  }
+   }
+   
+   private static void avaliaMotorista(){
+        //pode nao existir motorista
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o email do motorista:\n");
+        String email=scan.nextLine();
+        System.out.println("Classifique o seu motorista (de 0 a 100): ");
+        int c = scan.nextInt();
+        if(c>0 && c<100){
+            Motorista m = (Motorista) um.findU(email);
+            m.addAval(c);
+        }
+        else{
+            System.out.println("A avaliação não se encontra dentro dos limites");
+        }
+    }
+   
 }
