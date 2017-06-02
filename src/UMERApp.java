@@ -336,7 +336,17 @@ public class UMERApp{
         }
        
     }
-   private static void registaViagem(){
+    
+   private static void top5Motoristas(){
+       List<Motorista> top = top5();
+       StringBuilder sb = new StringBuilder();
+       int i;
+       for(i=0; i<5; i++  ){
+         sb.append(i+1).append(top.get(i).getNome()).append("\n");  
+        }
+    } 
+   
+    private static void registaViagem(){
           Utilizador user = getUtilizadorC();
           
           Scanner is = new Scanner(System.in);

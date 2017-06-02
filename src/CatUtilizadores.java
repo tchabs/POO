@@ -59,6 +59,25 @@ public class CatUtilizadores implements Serializable
         return this.catalog.stream().mapToDouble(x -> x.totalFaturado()).sum();
     }
     
+    public List<Cliente> top5() {
+        //return this.catalog.stream().filter(x -> x instanceof Cliente).sorted(new ComparadorTop10()).limit(10).collect(Collectors.toList());
+        ArrayList<Motorista> motorista = new ArrayList<Motorista>();
+        int i = 0;
+        for(Utilizador u : this.catalog){
+            if(u instanceof Motorista){
+                Motorista c = (Motorista) u;
+                if(i<this.catalog.size()){
+                    motorista.add(c);
+                    i++;
+                }
+            }
+        }
+        
+        Collections.sort(motorista, new ComparadorTop10());
+        List<Motorista> nova = new ArrayList<>(motorista.subList(0,4));
+        return nova;
+    }
+    
     public List<Cliente> top10() {
         //return this.catalog.stream().filter(x -> x instanceof Cliente).sorted(new ComparadorTop10()).limit(10).collect(Collectors.toList());
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
