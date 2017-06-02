@@ -32,13 +32,7 @@ public class CatUtilizadores implements Serializable
     }
     
     public TreeSet<Utilizador> getCat(){
-        TreeSet<Utilizador> res = new TreeSet<Utilizador>();
-        
-        for(Utilizador a : catalog){
-            res.add(a.clone());
-        }
-        
-        return res;
+        return this.catalog;
     }
     public int sizeCatalog() {
         return this.catalog.size();
@@ -68,7 +62,7 @@ public class CatUtilizadores implements Serializable
         return this.catalog.stream().mapToDouble(x -> x.totalFaturado()).sum();
     }
     
-    public List<Cliente> top5() {
+    public List<Motorista> top5() {
         //return this.catalog.stream().filter(x -> x instanceof Cliente).sorted(new ComparadorTop10()).limit(10).collect(Collectors.toList());
         ArrayList<Motorista> motorista = new ArrayList<Motorista>();
         int i = 0;
@@ -83,7 +77,7 @@ public class CatUtilizadores implements Serializable
         }
         
         Collections.sort(motorista, new ComparadorTop10());
-        List<Motorista> nova = new ArrayList<>(motorista.subList(0,4));
+        List<Motorista> nova = new ArrayList<Motorista>(motorista.subList(0,4));
         return nova;
     }
     

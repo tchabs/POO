@@ -1,5 +1,7 @@
+import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Calendar;
+
 public class Viagem implements Serializable {
     
     private Localizacao inicioL;

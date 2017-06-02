@@ -29,7 +29,9 @@ public class CatViaturas implements Serializable
             this.catalog.add(viatura);
         }
     }
-    
+    public TreeSet<Viatura> getV(){
+        return this.catalog;
+    }
     public int sizeCatalog() {
         return this.catalog.size();
     }

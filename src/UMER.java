@@ -50,7 +50,7 @@ public class UMER implements Serializable
         this.catV = catV;
     }
 
-    public UMER init() throws IOException,ClassNotFoundException,FileNotFoundException{
+    public static UMER init() throws IOException,ClassNotFoundException,FileNotFoundException{
         ObjectInputStream save = new ObjectInputStream(new FileInputStream ("snap.data"));
         UMER u =  (UMER) save.readObject();
         save.close();
@@ -72,7 +72,7 @@ public class UMER implements Serializable
     public void signIn(String email, String password) throws EmailException,PasswordException {
         Utilizador u=null;
         u = this.catU.findU(email);
-        if(u==null) return;
+        if(u==null) throw new EmailException();
         if (u.getPassword()!=password) throw new PasswordException();
         else uConectado = u;
     
@@ -110,7 +110,7 @@ public class UMER implements Serializable
         viagem.setInicioL(uConectado.getLocal());
         viagem.setFimL(fim);
         viagem.setInicioT(new GregorianCalendar());
-        
+            
         if(matricula=="near by") v = getNearBy(viagem.getInicioL(),empresa);
         else if (empresa==null) v = catV.findV(matricula);
         else v = empresa.getViaturas().findV(matricula);
@@ -156,6 +156,15 @@ public class UMER implements Serializable
         return catV.totalFaturado();
 
 
+    }
+    
+    public static UMER leObj(String fich) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fich));
+
+        UMER t = (UMER) ois.readObject();
+
+        ois.close();
+        return t;
     }
 }
 
