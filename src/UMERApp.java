@@ -423,4 +423,13 @@ public class UMERApp{
        insertViatura(v);
     }
    
+    private static void AssociaVeiculo(){
+       Utilizador user = um.getUtilizadorC();
+       Scanner scan = new Scanner(System.in);
+       System.out.println("Digite a matricula da viatura a qual se quer associar:");
+       String matricula= scan.nextLine();
+       Viatura v = finV(matricula);
+       v.setMotorista(user);
+       
+    }  
 }
