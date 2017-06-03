@@ -16,126 +16,125 @@
 \titleformat{\chapter}{\normalfont\huge}{\thechapter.}{10pt}{\huge\it} 
 \begin{document}
 \begin{titlepage}
-	\centering
+\begin{center}
 	\includegraphics[width=0.3\textwidth]{uminho.jpg}\par\vspace{1cm}
-	{\huge\bfseries Programa√ß√£o Orientada a Objetos \par}
+	{\huge\bfseries ProgramaÁ„o Orientada a Objetos \par}
 	\vspace{0.5cm}
-	{\scshape\ MIEI - 2¬∫ ano - 2¬∫ semestre\par}
+	{\scshape\ MIEI - 2∫ ano - 2∫ semestre\par}
 	\vspace{0.1cm}
 	{\scshape\ Universidade do Minho\par}
 	\vspace{1.5cm}
     {\scshape\Huge\bfseries UMeR \par}
-	\vspace{3cm}
+	\vspace{1cm}
 	{\scshape\Huge\bfseries Grupo 29 \par}
     \vspace{1cm}
-	{\scshape\ Frederico Pinto \par} 	\vspace{0.1cm}
-	{\scshape\ A73639 \par}  \vspace{0.3cm}
-	{\scshape\ Jos√© Sousa \par} \vspace{0.1cm}
-	{\scshape\ A74678 \par}  \vspace{0.3cm}
-	{\scshape\ Rui Vieira \par} \vspace{0.1cm}
-	{\scshape\ A74658 \par}  \vspace{0.3cm}
-
+    
+	Rui Vieira\hspace{3cm}A74658\hspace{2cm}\includegraphics[width=0.12\textwidth]{tchabs.jpg}\vspace{0.1cm}\par
+	Frederico Pinto\hspace{3.cm}A73639\hspace{2cm}\includegraphics[width=0.12\textwidth]{camal.jpg}\vspace{0.1cm}\par
+	JosÈ Sousa\hspace{3.cm}A74678\hspace{2cm}\includegraphics[width=0.12\textwidth]{piro.jpg}\vspace{0.1cm}\par
+	
 	\vfill
 	{\large \today\par}
+\end{center}
 \end{titlepage}
 
 \tableofcontents
 
-\chapter{Introdu√ß√£o}
+\chapter{IntroduÁ„o}
 
-Este projeto foi nos solicitado pelos docentes da UC \emph{Programa√ß√£o Orientada a Objetos}, onde nos foi proposta a realiza√ß√£o de uma aplica√ß√£o capaz de dar suporte a toda a funcionalidade que permita que um utilizador realize a viagem num t√°xi na empresa UMeR. Existem dois tipos de atores nesta aplica√ß√£o, Cliente e Motorista. Os Clientes podem requisitar uma viagem, avaliar o motorista e consultar o seu hist√≥rico de viagens. J√° os Motoristas s√≥ pode fazer a ultima do ator Cliente no entanto t√™m a possibilidade de adicionar um novo t√°xi, associar a si um t√°xi, registar uma viagem, sinalizar disponibilidade e associar-se a uma empresa tendo desta forma acesso √° listagem de motoristas e t√°xis dessa mesma empresa podendo tamb√©m desassociar-se da respetiva empresa.  
+Este projeto foi nos solicitado pelos docentes da UC \emph{ProgramaÁ„o Orientada a Objetos}, onde nos foi proposta a realizaÁ„o de uma aplicaÁ„o capaz de dar suporte a toda a funcionalidade que permita que um utilizador realize a viagem num t·xi na empresa UMeR. Existem dois tipos de atores nesta aplicaÁ„o, Cliente e Motorista. Os Clientes podem requisitar uma viagem, avaliar o motorista e consultar o seu histÛrico de viagens. J· os Motoristas sÛ pode fazer a ultima do ator Cliente no entanto tÍm a possibilidade de adicionar um novo t·xi, associar a si um t·xi, registar uma viagem, sinalizar disponibilidade e associar-se a uma empresa tendo desta forma acesso · listagem de motoristas e t·xis dessa mesma empresa podendo tambÈm desassociar-se da respetiva empresa.  
 
-A realiza√ß√£o deste projeto tinha como principal objetivo implementar em java os conhecimentos adquiridos na respetiva UC, em enfase para \emph{modularidade} e \emph{encapsulamento de dados} que at√© ent√£o n√£o tinham sido abordadas ao longo nosso percurso acad√©mico.
+A realizaÁ„o deste projeto tinha como principal objetivo implementar em java os conhecimentos adquiridos na respetiva UC, em enfase para \emph{modularidade} e \emph{encapsulamento de dados} que atÈ ent„o n„o tinham sido abordadas ao longo nosso percurso acadÈmico.
 
-\chapter{Descri√ß√£o da aplica√ß√£o}
+\chapter{DescriÁ„o da aplicaÁ„o}
 
-Esta √© uma aplica√ß√£o com uma interface muito simples, de forma a que o utilizador possa tirar o maior proveito. Todos os menus funcionam √† base de op√ß√µes por n√∫meros. 
-Quando a aplica√ß√£o √© iniciada, o primeiro menu a que est√° sujeito o utilizador √© o seguinte:
+Esta È uma aplicaÁ„o com uma interface muito simples, de forma a que o utilizador possa tirar o maior proveito. Todos os menus funcionam ‡ base de opÁıes por n˙meros. 
+Quando a aplicaÁ„o È iniciada, o primeiro menu a que est· sujeito o utilizador È o seguinte:
 
 
 \includegraphics[width=0.7\linewidth, height=5cm]{1.png}
 
-Neste menu, menu inicial, o utilizador pode registar-se, (Op√ß√£o 1), e caso j√° o tenha feito pode iniciar sess√£o na Op√ß√£o 2. Para al√©m disso, ao escolher a Op√ß√£o 3, o utilizador tem acesso √† lista de Empresas existentes na aplica√ß√£o. Ao escolher a Op√ß√£o 4 ou Op√ß√£o 5, o utilizador tem acesso ao Top 10 Clientes que mais gastam e ao Top 5 motoristas que apresentam mais desvios entre os valores previstos para as viagens e o valor final faturado. 
+Neste menu, menu inicial, o utilizador pode registar-se, (OpÁ„o 1), e caso j· o tenha feito pode iniciar sess„o na OpÁ„o 2. Para alÈm disso, ao escolher a OpÁ„o 3, o utilizador tem acesso ‡ lista de Empresas existentes na aplicaÁ„o. Ao escolher a OpÁ„o 4 ou OpÁ„o 5, o utilizador tem acesso ao Top 10 Clientes que mais gastam e ao Top 5 motoristas que apresentam mais desvios entre os valores previstos para as viagens e o valor final faturado. 
 
 
-Se o utilizador decidir efetuar o registo ser√° apresentado o seguinte menu:
+Se o utilizador decidir efetuar o registo ser· apresentado o seguinte menu:
 
 \includegraphics[width=0.7\linewidth, height=5cm]{2.png}
 
-Ap√≥s a apresenta√ß√£o deste menu, o utilizador pode escolher em registar-se como Motorista (Op√ß√£o 1) ou Cliente (Op√ß√£o2). Para isso ter√° de inserir determinadas informa√ß√µes necess√°rias para o registo: 
+ApÛs a apresentaÁ„o deste menu, o utilizador pode escolher em registar-se como Motorista (OpÁ„o 1) ou Cliente (OpÁ„o2). Para isso ter· de inserir determinadas informaÁıes necess·rias para o registo: 
 
 \includegraphics[width=0.7\linewidth, height=5cm]{3.png}
 
-Depois do registo o utilizador pode agora iniciar sess√£o e desfrutar da aplica√ß√£o. Depois de iniciar sess√£o ser√° apresentado um menu consoante o tipo de utilizador que √©, caso seja um Motorista, o seguinte menu √© apresentado: 
+Depois do registo o utilizador pode agora iniciar sess„o e desfrutar da aplicaÁ„o. Depois de iniciar sess„o ser· apresentado um menu consoante o tipo de utilizador que È, caso seja um Motorista, o seguinte menu È apresentado: 
 
 \includegraphics[width=0.7\linewidth, height=5cm]{4.png}
 
-Op√ß√£o 1 ‚Äì  Esta op√ß√£o permite ao utilizador (Motorista), registar uma viatura na aplica√ß√£o.
+OpÁ„o 1 ?  Esta opÁ„o permite ao utilizador (Motorista), registar uma viatura na aplicaÁ„o.
 
-Op√ß√£o 2 ‚Äì Permite ao utilizador associar uma viatura a si pr√≥prio.
+OpÁ„o 2 ? Permite ao utilizador associar uma viatura a si prÛprio.
 
-Op√ß√£o 3 -  Permite ao utilizador associar-se a uma empresa caso ela exista.
+OpÁ„o 3 -  Permite ao utilizador associar-se a uma empresa caso ela exista.
 
-Op√ß√£o 4 -  Com esta op√ß√£o o utilizador pode consultar o seu hist√≥rico de viagens.
+OpÁ„o 4 -  Com esta opÁ„o o utilizador pode consultar o seu histÛrico de viagens.
 
-Op√ß√£o 5 -  Nesta op√ß√£o o utilizador (Motorista) pode mudar a sua disponibilidade. 
+OpÁ„o 5 -  Nesta opÁ„o o utilizador (Motorista) pode mudar a sua disponibilidade. 
 
-Op√ß√£o 6 -  O utilizador termina sess√£o na aplica√ß√£o.
+OpÁ„o 6 -  O utilizador termina sess„o na aplicaÁ„o.
 
-Op√ß√£o 0  - Volta atr√°s no menu.  
+OpÁ„o 0  - Volta atr·s no menu.  
 
-Caso o Motorista, escolha a Op√ß√£o 3 e esta seja efetuada com sucesso, o Motorista passar√° a ser um Motorista de uma empresa e ter√° acesso a outro menu diferente: 
+Caso o Motorista, escolha a OpÁ„o 3 e esta seja efetuada com sucesso, o Motorista passar· a ser um Motorista de uma empresa e ter· acesso a outro menu diferente: 
 
-Op√ß√£o 1 (Adicionar Veiculo) ‚Äì Esta op√ß√£o permite ao utilizador (Motorista), registar uma viatura na aplica√ß√£o.
+OpÁ„o 1 (Adicionar Veiculo) ? Esta opÁ„o permite ao utilizador (Motorista), registar uma viatura na aplicaÁ„o.
 
-Op√ß√£o 2 (Associar Veiculo) - Permite ao utilizador associar uma viatura a si pr√≥prio.
+OpÁ„o 2 (Associar Veiculo) - Permite ao utilizador associar uma viatura a si prÛprio.
 
-Op√ß√£o 3 (Consultar Hist√≥rico) - Com esta op√ß√£o o utilizador pode consultar o seu hist√≥rico de   viagens.
+OpÁ„o 3 (Consultar HistÛrico) - Com esta opÁ„o o utilizador pode consultar o seu histÛrico de   viagens.
 
-Op√ß√£o 4 (Lista de Motoristas da Empresa) ‚Äì Nesta op√ß√£o √© apresentada a lista de motoristas associados √† empresa.
+OpÁ„o 4 (Lista de Motoristas da Empresa) ? Nesta opÁ„o È apresentada a lista de motoristas associados ‡ empresa.
 
-Op√ß√£o 5 (Lista de Viaturas duma Empresa) ‚Äì Nesta op√ß√£o √© apresentada a lista de viaturas associadas √† empresa.
+OpÁ„o 5 (Lista de Viaturas duma Empresa) ? Nesta opÁ„o È apresentada a lista de viaturas associadas ‡ empresa.
 
-Op√ß√£o 6 (Sinalizar Disponibilidade) - Nesta op√ß√£o o utilizador (Motorista) pode mudar a sua disponibilidade.
+OpÁ„o 6 (Sinalizar Disponibilidade) - Nesta opÁ„o o utilizador (Motorista) pode mudar a sua disponibilidade.
 
-Op√ß√£o 7 (Desassociar Empresa) ‚Äì Nesta op√ß√£o o utilizador desassocia-se da empresa a que est√° ligado.
+OpÁ„o 7 (Desassociar Empresa) ? Nesta opÁ„o o utilizador desassocia-se da empresa a que est· ligado.
 
-Op√ß√£o 8 (Terminar Sess√£o) ‚Äì O utilizador termina sess√£o na aplica√ß√£o.
+OpÁ„o 8 (Terminar Sess„o) ? O utilizador termina sess„o na aplicaÁ„o.
 
-Op√ß√£o 0  - Volta atr√°s no menu.  
+OpÁ„o 0  - Volta atr·s no menu.  
 
-No entanto, caso o utilizador seja um Cliente o menu apresentado √© o seguinte: 
+No entanto, caso o utilizador seja um Cliente o menu apresentado È o seguinte: 
 
 \includegraphics[width=0.7\linewidth, height=5cm]{5.png}
 
 
-Op√ß√£o 1 ‚Äì Nesta op√ß√£o o Cliente pode avaliar o Motorista ap√≥s a viagem. 
+OpÁ„o 1 ? Nesta opÁ„o o Cliente pode avaliar o Motorista apÛs a viagem. 
 
-Op√ß√£o 2 ‚Äì Com esta op√ß√£o o utilizador pode consultar o seu hist√≥rico de viagens.
+OpÁ„o 2 ? Com esta opÁ„o o utilizador pode consultar o seu histÛrico de viagens.
 
-Op√ß√£o 3 ‚Äì Nesta op√ß√£o o utilizador solicita uma viagem.
+OpÁ„o 3 ? Nesta opÁ„o o utilizador solicita uma viagem.
 
-Op√ß√£o 4 - O utilizador termina sess√£o na aplica√ß√£o.
+OpÁ„o 4 - O utilizador termina sess„o na aplicaÁ„o.
 
-Op√ß√£o 0  - Volta atr√°s no menu.  
+OpÁ„o 0  - Volta atr·s no menu.  
 
-Caso o Cliente, escolha a Op√ß√£o 3 (Solicitar Viagem), ser√° apresentado no ecr√£ o seguinte menu:
+Caso o Cliente, escolha a OpÁ„o 3 (Solicitar Viagem), ser· apresentado no ecr„ o seguinte menu:
 
 \includegraphics[width=0.7\linewidth, height=5cm]{1.png}
 
 
-Op√ß√£o 1 - Caso o utilizador escolha esta op√ß√£o solicita o t√°xi mais pr√≥ximo dele.
+OpÁ„o 1 - Caso o utilizador escolha esta opÁ„o solicita o t·xi mais prÛximo dele.
 
-Op√ß√£o 2 ‚Äì Nesta op√ß√£o o cliente pode solicitar um t√°xi especifico, podendo escolher entre carro, moto ou carrinha.
+OpÁ„o 2 ? Nesta opÁ„o o cliente pode solicitar um t·xi especifico, podendo escolher entre carro, moto ou carrinha.
 
-\chapter{Arquitetura da aplica√ß√£o}
+\chapter{Arquitetura da aplicaÁ„o}
 \section{UMERApp}
 
 Atributos:
 
 \begin{itemize}
     \item UMER um \par
-Umer a correr na aplica√ß√£o
+Umer a correr na aplicaÁ„o
     \item Menu\_principal \par
 Menu principal.
     \item Menu menu\_registo \par
@@ -152,18 +151,18 @@ Menu para solicitar uma viagem.
 Menu para os tipos de veiculo
 \end{itemize}
 
-Esta classe trata de toda a interface apresentada ao utilizador, para al√©m disso esta classe trata de gravar o estado da aplica√ß√£o e ler esse mesmo quando aplica√ß√£o √© fechada e reiniciada. 
+Esta classe trata de toda a interface apresentada ao utilizador, para alÈm disso esta classe trata de gravar o estado da aplicaÁ„o e ler esse mesmo quando aplicaÁ„o È fechada e reiniciada. 
 
 \subsection{Menu}
 \emph{\bfseries Atributos}
 \begin{itemize}
     \item List<String> opcoes \par
-Lista de op√ß√µes que o menu cont√©m.
+Lista de opÁıes que o menu contÈm.
     \item int op \par
-Opera√ß√£o escolhida pelo utilizador.
+OperaÁ„o escolhida pelo utilizador.
 \end{itemize}
 
-Esta classe √© a classe respons√°vel por todos os menus criados e pelo funcionamento dos mesmos. Com esta classe o trabalho da classe principal, UMERApp, √© muito mais f√°cil.
+Esta classe È a classe respons·vel por todos os menus criados e pelo funcionamento dos mesmos. Com esta classe o trabalho da classe principal, UMERApp, È muito mais f·cil.
 
 
 \section{UMER}
@@ -171,18 +170,18 @@ Esta classe √© a classe respons√°vel por todos os menus criados e pelo funcionam
 
 \begin{itemize}
     \item Utilizador uConectado; \par
-Utilizador que est√° conetado na aplica√ß√£o. (com sess√£o iniciada).
+Utilizador que est· conetado na aplicaÁ„o. (com sess„o iniciada).
     \item CatUtilizadores catU; \par
-CatUtilizadores(TreeSet<Utilizadores>) que cont√™m todos os utilizadores registados na Umer.
+CatUtilizadores(TreeSet<Utilizadores>) que contÍm todos os utilizadores registados na Umer.
     \item CatViaturas catV; \par
-CatViaturas(TreeSet<Viatura>) que cont√™m todos as viaturas registadas na Umer.
+CatViaturas(TreeSet<Viatura>) que contÍm todos as viaturas registadas na Umer.
     \item ArrayList<Empresa> catE; \par
-Lista que cont√™m todas as empresas existentes na Umer.
+Lista que contÍm todas as empresas existentes na Umer.
 \end{itemize}
 
-Esta classe √© respons√°vel pelo funcionamento da aplica√ß√£o, √© na pr√≥pria que est√£o desenvolvidas praticamente todas as funcionalidades da nossa aplica√ß√£o.
+Esta classe È respons·vel pelo funcionamento da aplicaÁ„o, È na prÛpria que est„o desenvolvidas praticamente todas as funcionalidades da nossa aplicaÁ„o.
 
-\section{Localiza√ß√£o}
+\section{LocalizaÁ„o}
 \emph{\bfseries Atributos}
 \begin{itemize}
     \item int x \par
@@ -190,7 +189,7 @@ Coordenada x.
     \item int y \par
 Coordenada y.
 \end{itemize}
-A classe Localiza√ß√£o √© respons√°vel pela cria√ß√£o de uma localiza√ß√£o (x,y) e dos c√°lculos de dist√¢ncias.
+A classe LocalizaÁ„o È respons·vel pela criaÁ„o de uma localizaÁ„o (x,y) e dos c·lculos de dist‚ncias.
 
 \section{Utilizador}
 \emph{\bfseries Atributos}
@@ -206,43 +205,43 @@ Morada do Utilizador.
     \item String dataNascimento \par
 Data de nascimento do Utilizador.
     \item Localizacao local \par
-Localiza√ß√£o do Utilizador.
+LocalizaÁ„o do Utilizador.
     \item TreeSet<Viagem> catViagens \par
-Cole√ß√£o de viagens efetuadas pelo Utilizador.
+ColeÁ„o de viagens efetuadas pelo Utilizador.
 \end{itemize}
 
-Classe abstrata para um utilizador, todos os utilizadores da aplica√ß√£o t√™m em comum o que se encontra desenvolvido na pr√≥pria. 
+Classe abstrata para um utilizador, todos os utilizadores da aplicaÁ„o tÍm em comum o que se encontra desenvolvido na prÛpria. 
 
 \subsection{CLiente}
-Esta classe corresponde a um Cliente, esta classe herda todos os par√¢metros da classe anterior.
+Esta classe corresponde a um Cliente, esta classe herda todos os par‚metros da classe anterior.
 
 \subsection{Motorista}
 \emph{\bfseries Atributos}
 \begin{itemize}
     \item int pontualidade \par
 Pontualidade do motorista.
-    \item int classifica√ß√£o \par
-Classifica√ß√£o do motorista.
+    \item int classificaÁ„o \par
+ClassificaÁ„o do motorista.
     \item long kms \par
 Kilometros totais percorridos pelo motorista. 
-    \item  boolean dispon√≠vel \par
+    \item  boolean disponÌvel \par
 Disponibilidade do motorista.
     \item  ArrayList<Integer> aval \par
-Lista com as avalia√ß√µes do motorista feita pelos clientes.
+Lista com as avaliaÁıes do motorista feita pelos clientes.
 \end{itemize}
 
-Esta classe corresponde a um Motorista, e tal como a classe Cliente, esta classe herda os atributos da classe Utilizador aos quais s√£o adicionados os atributos acima descritos.
+Esta classe corresponde a um Motorista, e tal como a classe Cliente, esta classe herda os atributos da classe Utilizador aos quais s„o adicionados os atributos acima descritos.
 
 \subsection{MotoristaE}
 \emph{\bfseries Atributos}
 \begin{itemize}
     \item Empresa empresa \par
-Empresa √† qual o motorista pertence.
+Empresa ‡ qual o motorista pertence.
     \item boolean disp \par
 Disponibilidade do motorista.
 \end{itemize}
 
-Esta classe representa um motorista de empresa. Esta classe s√≥ tem m√©todos mais comuns.
+Esta classe representa um motorista de empresa. Esta classe sÛ tem mÈtodos mais comuns.
 
 \section{Empresa}
 \emph{\bfseries Atributos}
@@ -254,7 +253,7 @@ TreeSet<Utilizadores> com todos os motoristas da empresa.
     \item  CatViaturas viaturas \par
 TreeSet<Viaturas> com todos as viaturas da empresa.
 \end{itemize}
-Esta classe corresponde a uma Empresa. Esta classe s√≥ tem m√©todos mais comuns.
+Esta classe corresponde a uma Empresa. Esta classe sÛ tem mÈtodos mais comuns.
 
 \section{Viatura}
 \emph{\bfseries Atributos}
@@ -264,24 +263,24 @@ Matricula da viatura.
     \item Motorista motorista \par
 Motorista da viatura.
     \item double velMedia \par
-Velocidade m√©dia da viatura.
+Velocidade mÈdia da viatura.
     \item double custo \par
-Pre√ßo por Km da viatura.
+PreÁo por Km da viatura.
     \item double fiabilidade \par
 Fiabilidade da viatura.
     \item boolean disp \par
 Disponibilidade da viatura.
     \item Localizacao local; \par
-Localiza√ß√£o da viatura.
+LocalizaÁ„o da viatura.
     \item   TreeSet<Viagem> catViagens; \par
-Cole√ß√£o de todas as viagens efetuadas pela viatura. 
+ColeÁ„o de todas as viagens efetuadas pela viatura. 
 
 \end{itemize}
 
-Esta classe corresponde a uma Viatura. Todas as viaturas t√™m em comum os atributos presentes nesta classe. 
+Esta classe corresponde a uma Viatura. Todas as viaturas tÍm em comum os atributos presentes nesta classe. 
 
 \subsection{Moto}
-Esta classe corresponde a uma Viatura do tipo Moto, possu√≠ os atributos herdados de Viatura. 
+Esta classe corresponde a uma Viatura do tipo Moto, possuÌ os atributos herdados de Viatura. 
 
 \subsection{Carro}
 \emph{\bfseries Atributos}
@@ -289,43 +288,60 @@ Esta classe corresponde a uma Viatura do tipo Moto, possu√≠ os atributos herdado
     \item ArrayList<Cliente> waitList; \par
 Lista da fila de espera do Clientes.	
 \end{itemize}
-Esta classe corresponde a uma Viatura do tipo Carro, para al√©m dos atributos herdados de Viatura, esta classe permite estabelecer uma fila de espera. 
+Esta classe corresponde a uma Viatura do tipo Carro, para alÈm dos atributos herdados de Viatura, esta classe permite estabelecer uma fila de espera. 
 
 \subsection{Carrinha}
-Esta classe corresponde a uma Viatura do tipo Carrinha, possu√≠ os atributos herdados de Viatura. 
+Esta classe corresponde a uma Viatura do tipo Carrinha, possuÌ os atributos herdados de Viatura. 
 
 \section{Viagem}
 \emph{\bfseries Atributos}
 \begin{itemize}
     \item Localizacao inicioL \par
-Localiza√ß√£o do inicio da viagem.
+LocalizaÁ„o do inicio da viagem.
     \item Localizacao fimL \par
-Localiza√ß√£o do final da viagem.
-    \item int classifica√ß√£o \par
-Classifica√ß√£o da viagem.
+LocalizaÁ„o do final da viagem.
+    \item int classificaÁ„o \par
+ClassificaÁ„o da viagem.
     \item double tempo \par
-Dura√ß√£o da viagem.
+DuraÁ„o da viagem.
     \item double preco \par
-Pre√ßo da viagem.
+PreÁo da viagem.
     \item Calendar inicioT \par
 Data do inicio da viagem.
     \item Calendar fimT \par
 Data do fim da viagem.
 \end{itemize}
 
-Esta classe corresponde a uma Viagem. Esta classe s√≥ tem m√©todos mais comuns. 
+Esta classe corresponde a uma Viagem. Esta classe sÛ tem mÈtodos mais comuns. 
+
+\section{CatUtilizadores}
+\emph{\bfseries Atributos}
+\begin{itemize}
+    \item TreeSet<Utilizador>  catalog \par
+TreeSet com utilizadores.
+\end{itemize}
+Esta classe corresponde a um cat·logo de utilizadores. 
+
+\section{CatViaturas}
+\emph{\bfseries Atributos}
+\begin{itemize}
+    \item TreeSet<Viatura>  catalog \par
+TreeSet com viaturas. 
+\end{itemize}
+Esta classe corresponde a um cat·logo de viaturas. 
+
 
 
 \chapter{Perspectivas de melhorias e trabalho futuro}
 
-Uma aplica√ß√£o deste g√©nero √© sempre um produto in acabo, necessidades mudam, por isso o desenvolvimento da mesma foi feito de maneira a que uma futura altera√ß√£o seja o mais f√°cil poss√≠vel, n√£o necessitando de refazer toda a aplica√ß√£o. Um exemplo pr√°tico seria o acrescentar de um novo tipo de veiculo, bastando para tal acrescentar a sua classe e acrescentar a sua op√ß√£o no menu do Motorista.  
+Uma aplicaÁ„o deste gÈnero È sempre um produto in acabo, necessidades mudam, por isso o desenvolvimento da mesma foi feito de maneira a que uma futura alteraÁ„o seja o mais f·cil possÌvel, n„o necessitando de refazer toda a aplicaÁ„o. Um exemplo pr·tico seria o acrescentar de um novo tipo de veiculo, bastando para tal acrescentar a sua classe e acrescentar a sua opÁ„o no menu do Motorista.  
 
 
 
-\chapter{Conclus√£o}
+\chapter{Conclus„o}
 
-Ao longo da realiza√ß√£o deste trabalho fomos confrontados com algumas dificuldades, tendo sido a falta de experiencia neste novo paradigma/linguagem o maior dos obst√°culos.
+Ao longo da realizaÁ„o deste trabalho fomos confrontados com algumas dificuldades, tendo sido a falta de experiencia neste novo paradigma/linguagem o maior dos obst·culos.
 
-Mas de uma forma geral as dificuldades foram superadas, culminando num trabalho minimamente completo do qual nos podemos orgulhar e do qual retiramos conhecimento n√£o s√≥ para realiza√ß√£o da UC em quest√£o, mas tamb√©m para a nossa vida enquanto futuros Engenheiros Inform√°ticos.
+Mas de uma forma geral as dificuldades foram superadas, culminando num trabalho minimamente completo do qual nos podemos orgulhar e do qual retiramos conhecimento n„o sÛ para realizaÁ„o da UC em quest„o, mas tambÈm para a nossa vida enquanto futuros Engenheiros Inform·ticos.
 
 \end{document}
